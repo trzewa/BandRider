@@ -7,5 +7,9 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_choice">ChoiceActivity</string>
+    <string name="title_activity_add_instrument">AddInstrumentActivity</string>
+    <string name="title_activity_add">AddActivity</string>
+    <string name="title_activity_add_instrumemt">AddInstrumemtActivity</string>
+    <string name="title_activity_add_stuff">AddStuffActivity</string>
 
 </resources>

@@ -40,6 +40,22 @@
             android:name=".ChoiceActivity"
             android:label="@string/title_activity_choice" >
         </activity>
+        <activity
+            android:name=".AddInstrumentActivity"
+            android:label="@string/title_activity_add_instrument" >
+        </activity>
+        <activity
+            android:name=".AddActivity"
+            android:label="@string/title_activity_add" >
+        </activity>
+        <activity
+            android:name=".AddInstrumemtActivity"
+            android:label="@string/title_activity_add_instrumemt" >
+        </activity>
+        <activity
+            android:name=".AddStuffActivity"
+            android:label="@string/title_activity_add_stuff" >
+        </activity>
     </application>
 
 </manifest>
