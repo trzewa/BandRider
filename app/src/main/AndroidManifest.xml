@@ -56,6 +56,14 @@
             android:name=".AddStuffActivity"
             android:label="@string/title_activity_add_stuff" >
         </activity>
+        <activity
+            android:name=".SummaryInstrumentActivity"
+            android:label="@string/title_activity_summary_instrument" >
+        </activity>
+        <activity
+            android:name=".SummaryStuffActivity"
+            android:label="@string/title_activity_summary_stuff" >
+        </activity>
     </application>
 
 </manifest>

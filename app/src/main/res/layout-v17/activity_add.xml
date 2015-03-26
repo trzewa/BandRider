@@ -20,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp" >
 
+
     </RadioGroup>
 
     <RadioButton
@@ -29,17 +30,18 @@
         android:text="Instrument"
         android:checked="true"
         android:gravity="center"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.11" />
 
     <RadioButton
-        android:id="@+id/radioSprzet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sprzęt"
-        android:layout_gravity="center_horizontal"
-        android:paddingRight="25dp"
-        android:paddingBottom="10dp"
-        android:layout_weight="0.12" />
+    android:id="@+id/radioSprzet"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Sprzęt"
+    android:layout_gravity="center_horizontal"
+    android:paddingRight="25dp"
+    android:paddingBottom="10dp"
+    android:layout_weight="0.11" />
 
     <Button
         android:layout_width="wrap_content"

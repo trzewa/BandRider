@@ -11,5 +11,7 @@
     <string name="title_activity_add">AddActivity</string>
     <string name="title_activity_add_instrumemt">AddInstrumemtActivity</string>
     <string name="title_activity_add_stuff">AddStuffActivity</string>
+    <string name="title_activity_summary_instrument">SummaryInstrumentActivity</string>
+    <string name="title_activity_summary_stuff">SummaryStuffActivity</string>
 
 </resources>
