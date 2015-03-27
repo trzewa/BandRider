@@ -20,7 +20,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.google.android.gms:play-services:6.5.87'
+    compile 'org.unitils.jodatime:unitils-jodatime:1.0.2'
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
 }
