@@ -24,5 +24,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.google.android.gms:play-services:6.5.87'
     compile 'org.unitils.jodatime:unitils-jodatime:1.0.2'
-    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile 'org.apache.maven:maven:3.3.1'
+
 }
