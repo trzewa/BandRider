@@ -4,16 +4,47 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.content.Context;
+import android.content.Intent;
+import android.widget.EditText;
+import android.widget.Toast;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import android.view.View;
 
 public class LoginActivity extends ActionBarActivity {
+
+    private EditText mEmailEditText;
+    private EditText mPasswordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        bindFields();
     }
 
+
+    private void bindFields() {
+        mEmailEditText = (EditText) findViewById(R.id.editTextLogin);
+        mPasswordEditText = (EditText) findViewById(R.id.editTextPass);
+    }
+
+    public void clickHandler(View v) {
+        switch (v.getId()) {
+            case R.id.buttonLogin:
+                logInUser();
+
+                break;
+            case R.id.buttonRegister:
+                RegisterActivity.startRegisterActivity(this);
+
+                break;
+            default:
+                break;
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -35,5 +66,30 @@ public class LoginActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void startLogInActivity(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    }
+
+    private void logInUser() {
+        String email = mEmailEditText.getText().toString();
+        String password = mPasswordEditText.getText().toString();
+
+        ParseUser.logInInBackground(email, password, new LogInCallback() {
+            public void done(ParseUser user, ParseException e) {
+                if (user != null) {
+                    // The user is logged in.
+                    ChoiceActivity.startChoiceActivity(LoginActivity.this);
+
+                } else {
+                    // Signup failed. Look at the ParseException to see what happened.
+                    Toast.makeText(getApplicationContext(), "Login error: " + e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
     }
 }

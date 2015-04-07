@@ -4,13 +4,26 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import com.parse.ParseAnalytics;
+import com.parse.ParseUser;
+import android.content.Context;
+import android.content.Intent;
 
 public class ChoiceActivity extends ActionBarActivity {
+
+    private ParseUser mCurrentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+
+        mCurrentUser = ParseUser.getCurrentUser();
+        if (mCurrentUser == null) {
+
+            LoginActivity.startLogInActivity(this);
+            finish();
+        }
         setContentView(R.layout.activity_choice);
     }
 
@@ -35,5 +48,10 @@ public class ChoiceActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void startChoiceActivity(Context context) {
+        Intent intent = new Intent(context, ChoiceActivity.class);
+        context.startActivity(intent);
     }
 }

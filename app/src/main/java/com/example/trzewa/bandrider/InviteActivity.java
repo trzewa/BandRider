@@ -23,7 +23,7 @@ public class InviteActivity extends Activity {
        timer.schedule(new TimerTask() {
            @Override
            public void run() {
-               startActivity(new Intent(InviteActivity.this, LoginActivity.class));
+               startActivity(new Intent(InviteActivity.this, ChoiceActivity.class));
                finish();
            }
        }, SPLASH_TIMEOUT);

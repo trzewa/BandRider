@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.content.Context;
+import android.content.Intent;
+
 
 public class RegisterActivity extends ActionBarActivity {
 
@@ -35,5 +38,11 @@ public class RegisterActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void startRegisterActivity(Context context) {
+        Intent intent = new Intent(context, RegisterActivity.class);
+        context.startActivity(intent);
+
     }
 }
