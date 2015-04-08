@@ -20,20 +20,20 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="50dp"
         android:text="Imie"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBottom="@+id/editTextName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/editTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_above="@+id/textView3"
-        android:layout_alignLeft="@+id/editTextSurname"
-        android:layout_alignStart="@+id/editTextSurname">
+        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/buttonRejestruj"
+        android:layout_alignStart="@+id/buttonRejestruj">
 
         <requestFocus />
     </EditText>
@@ -42,43 +42,42 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="50dp"
         android:text="Nazwisko"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBottom="@+id/editTextSurname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-         <EditText
+    <EditText
         android:id="@+id/editTextSurname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_marginLeft="32dp"
-        android:layout_toRightOf="@+id/textView3"
-        android:ems="10" >
+             android:ems="10"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/editTextName"
+        android:layout_alignStart="@+id/editTextName">
 
         <requestFocus />
     </EditText>
-
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="50dp"
         android:text="Login"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBottom="@+id/editTextNick"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/editTextNick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_alignLeft="@+id/editTextSurname"
-        android:layout_alignStart="@+id/editTextSurname">
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/editTextPass"
+        android:layout_alignStart="@+id/editTextPass">
 
         <requestFocus />
     </EditText>
@@ -87,11 +86,11 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_below="@+id/textView4"
-        android:layout_marginTop="38dp"
-        android:text="hasło"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="Hasło"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBottom="@+id/editTextPass"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/editTextPass"
@@ -99,41 +98,44 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:layout_alignBottom="@+id/textView5"
-        android:layout_alignLeft="@+id/editTextNick"
-        android:layout_alignStart="@+id/editTextNick" />
+        android:layout_below="@+id/editTextNick"
+        android:layout_alignLeft="@+id/editTextSurname"
+        android:layout_alignStart="@+id/editTextSurname" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView5"
-        android:layout_marginTop="50dp"
         android:text="Miasto"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBottom="@+id/editTextCity"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/editTextCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_alignBottom="@+id/textView6"
+        android:layout_below="@+id/textView5"
         android:layout_alignLeft="@+id/editTextPass"
         android:layout_alignStart="@+id/editTextPass">
 
         <requestFocus />
     </EditText>
 
+
     <Button
         android:id="@+id/buttonRejestruj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
         android:onClick="login"
         android:text="Zarejestruj"
+        android:layout_gravity="center"
+        android:layout_marginTop="42dp"
         android:layout_below="@+id/editTextCity"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/textView1"
+        android:layout_alignEnd="@+id/textView1" />
 
 
 </RelativeLayout>
