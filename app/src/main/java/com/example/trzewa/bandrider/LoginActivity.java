@@ -15,7 +15,7 @@ import android.view.View;
 
 public class LoginActivity extends ActionBarActivity {
 
-    private EditText mEmailEditText;
+    private EditText mLoginEditText;
     private EditText mPasswordEditText;
 
     @Override
@@ -27,7 +27,7 @@ public class LoginActivity extends ActionBarActivity {
 
 
     private void bindFields() {
-        mEmailEditText = (EditText) findViewById(R.id.editTextLogin);
+        mLoginEditText = (EditText) findViewById(R.id.editTextLogin);
         mPasswordEditText = (EditText) findViewById(R.id.editTextPass);
     }
 
@@ -74,7 +74,7 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     private void logInUser() {
-        String email = mEmailEditText.getText().toString();
+        String email = mLoginEditText.getText().toString();
         String password = mPasswordEditText.getText().toString();
 
         ParseUser.logInInBackground(email, password, new LogInCallback() {
