@@ -85,7 +85,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
         //String city = CityEditText.getText().toString();
 
         ParseUser user = new ParseUser();
-        user.setUsername(login);
+        user.setUsername(nick);
         user.setPassword(password);
         user.setEmail(login);
 

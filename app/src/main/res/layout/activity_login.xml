@@ -25,7 +25,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="50dp"
-        android:text="Login"
+        android:text="Email"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -35,7 +35,8 @@
         android:layout_alignBottom="@+id/textView2"
         android:layout_marginLeft="32dp"
         android:layout_toRightOf="@+id/textView2"
-        android:ems="10" >
+        android:ems="10"
+        android:autoLink="email">
 
         <requestFocus />
     </EditText>
@@ -47,7 +48,7 @@
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="38dp"
-        android:text="hasło"
+        android:text="Hasło"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText

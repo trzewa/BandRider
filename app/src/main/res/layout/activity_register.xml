@@ -41,7 +41,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Email"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignTop="@+id/editTextLogin"
         android:layout_alignParentLeft="true"
@@ -54,7 +54,8 @@
         android:layout_marginTop="17dp"
         android:layout_below="@+id/editTextNick"
         android:layout_alignLeft="@+id/editTextNick"
-        android:layout_alignStart="@+id/editTextNick" />
+        android:layout_alignStart="@+id/editTextNick"
+        android:autoLink="email" />
 
     <TextView
         android:id="@+id/textView4"

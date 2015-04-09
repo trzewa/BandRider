@@ -83,6 +83,7 @@ public class LoginActivity extends ActionBarActivity {
                     // The user is logged in.
                     ChoiceActivity.startChoiceActivity(LoginActivity.this);
 
+
                 } else {
                     // Signup failed. Look at the ParseException to see what happened.
                     Toast.makeText(getApplicationContext(), "Login error: " + e.getMessage(),
