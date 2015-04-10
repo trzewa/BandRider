@@ -99,8 +99,8 @@
         android:onClick="login"
         android:text="Zarejestruj"
         android:layout_gravity="center"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/editText"
+        android:layout_marginTop="132dp"
+        android:layout_below="@+id/editTextPassword"
         android:layout_alignLeft="@+id/textView1"
         android:layout_alignStart="@+id/textView1" />
 

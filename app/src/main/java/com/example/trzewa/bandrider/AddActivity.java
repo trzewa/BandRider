@@ -38,13 +38,14 @@ public class AddActivity extends ActionBarActivity {
 
                 radioItemButton = (RadioButton) findViewById(selectedId);
 
-                if (radioItemButton.getText() == "Instrument")
+                if (radioItemButton.getText() =="Instrument")
                 {
                     startActivity(new Intent(AddActivity.this, AddInstrumemtActivity.class));
                 }
                 else
                 {
-                    startActivity(new Intent(AddActivity.this, AddStuffActivity.class));
+                   // startActivity(new Intent(AddActivity.this, AddStuffActivity.class));
+                    startActivity(new Intent(AddActivity.this, AddInstrumemtActivity.class));
                 }
             }
 
