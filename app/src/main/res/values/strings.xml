@@ -13,5 +13,6 @@
     <string name="title_activity_add_stuff">AddStuffActivity</string>
     <string name="title_activity_summary_instrument">SummaryInstrumentActivity</string>
     <string name="title_activity_summary_stuff">SummaryStuffActivity</string>
+    <string name="title_activity_plan_rider">PlanRiderActivity</string>
 
 </resources>
