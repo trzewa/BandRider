@@ -67,13 +67,11 @@
         android:layout_below="@+id/editTextPass"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="94dp"
-        android:onClick="clickHandler"
         android:text="Login" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="clickHandler"
         android:text="Zarejestruj"
         android:id="@+id/buttonRegister"
         android:layout_below="@+id/buttonLogin"

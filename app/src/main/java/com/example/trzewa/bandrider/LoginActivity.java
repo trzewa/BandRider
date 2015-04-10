@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.parse.LogInCallback;
@@ -23,12 +24,33 @@ public class LoginActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         bindFields();
+
+        Button RegisterButton = (Button) findViewById(R.id.buttonRegister);
+        Button LoginButton = (Button) findViewById(R.id.buttonLogin);
+        LoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                logInUser();
+
+            }
+        });
+        RegisterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+
+            }
+        });
+
     }
 
 
     private void bindFields() {
         mLoginEditText = (EditText) findViewById(R.id.editTextLogin);
         mPasswordEditText = (EditText) findViewById(R.id.editTextPass);
+
     }
 
     public void clickHandler(View v) {
