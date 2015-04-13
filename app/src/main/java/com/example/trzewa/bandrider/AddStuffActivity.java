@@ -26,24 +26,9 @@ public class AddStuffActivity extends Activity {
         setContentView(R.layout.activity_add_stuff);
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = settings.edit();
-        Button NextButton = (Button) findViewById(R.id.ToStuffSummary);
-        Button ReturnButton = (Button) findViewById(R.id.Return);
-        NextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        NextButton = (Button) findViewById(R.id.ToStuffSummary);
+        ReturnButton = (Button) findViewById(R.id.Return);
 
-                startActivity(new Intent(AddStuffActivity.this, SummaryInstrumentActivity.class));
-
-            }
-        });
-        ReturnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                finish();
-
-            }
-        });
 
         final Spinner spinner = (Spinner)findViewById(R.id.spinner2);
 
@@ -83,7 +68,22 @@ public class AddStuffActivity extends Activity {
 
             }
         });
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                startActivity(new Intent(AddStuffActivity.this, SummaryStuffActivity.class));
+
+            }
+        });
+        ReturnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+
+            }
+        });
     }
 
 

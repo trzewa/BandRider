@@ -1,5 +1,6 @@
 package com.example.trzewa.bandrider;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -9,11 +10,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 
 public class AddInstrumemtActivity extends ActionBarActivity {
+
+    private Button NextButton;
+    private Button ReturnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,8 @@ public class AddInstrumemtActivity extends ActionBarActivity {
         String[] elementy = {"strunowe", "dęte", "perkusyjne"};
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_instrumemt);
+        NextButton = (Button) findViewById(R.id.ToInstSummary);
+        ReturnButton = (Button) findViewById(R.id.Returnnp);
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = settings.edit();
 
@@ -59,6 +66,22 @@ public class AddInstrumemtActivity extends ActionBarActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(AddInstrumemtActivity.this, SummaryInstrumentActivity.class));
+
+            }
+        });
+        ReturnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
 
             }
         });
