@@ -1,29 +1,53 @@
 package com.example.trzewa.bandrider;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 
-public class AddStuffActivity extends ActionBarActivity {
+public class AddStuffActivity extends Activity {
+    private Button NextButton;
+    private Button ReturnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String[] elementy2 = {"strunowe", "dęte", "perkusyjne"};
         setContentView(R.layout.activity_add_stuff);
-        String[] elementy = {"strunowe", "dęte", "perkusyjne"};
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_instrumemt);
+        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences.Editor editor = settings.edit();
+        Button NextButton = (Button) findViewById(R.id.ToStuffSummary);
+        Button ReturnButton = (Button) findViewById(R.id.Return);
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        final Spinner spinner = (Spinner)findViewById(R.id.spinner1);
+                startActivity(new Intent(AddStuffActivity.this, SummaryInstrumentActivity.class));
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, elementy);
+            }
+        });
+        ReturnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+
+            }
+        });
+
+        final Spinner spinner = (Spinner)findViewById(R.id.spinner2);
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, elementy2);
 
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -59,6 +83,7 @@ public class AddStuffActivity extends ActionBarActivity {
 
             }
         });
+
     }
 
 

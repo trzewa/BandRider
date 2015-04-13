@@ -69,25 +69,34 @@
         android:layout_marginTop="48dp" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/spinner2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView4"
-        android:layout_alignLeft="@+id/DodajSprzet"
-        android:layout_alignStart="@+id/DodajSprzet" />
+        android:layout_toEndOf="@+id/Return"
+        android:layout_toRightOf="@+id/Return" />
 
 
 
     <Button
-        android:id="@+id/DodajSprzet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="login"
-        android:text="Dodaj"
-        android:layout_gravity="center"
-        android:layout_marginBottom="50dp"
+        android:text="Powrót"
+        android:layout_gravity="left"
+        android:id="@+id/Return"
+        android:layout_alignTop="@+id/ToStuffSummary"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dalej"
+        android:id="@+id/ToStuffSummary"
+        android:layout_gravity="right"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/spinner2"
+        android:layout_alignEnd="@+id/spinner2" />
 
 
 

@@ -73,21 +73,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView4"
-        android:layout_alignLeft="@+id/buttonRejestruj"
-        android:layout_alignStart="@+id/buttonRejestruj" />
+        android:layout_toRightOf="@+id/Returnnp"
+        android:layout_toEndOf="@+id/Returnnp" />
 
 
 
     <Button
-        android:id="@+id/buttonRejestruj"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="login"
-        android:text="Dodaj"
-        android:layout_gravity="center"
-        android:layout_marginBottom="52dp"
+        android:text="Powrót"
+        android:layout_gravity="left"
+        android:id="@+id/Returnnp"
+        android:layout_alignTop="@+id/ToInstSummary"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignStart="@+id/textView1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dalej"
+        android:id="@+id/ToInstSummary"
+        android:layout_gravity="right"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignRight="@+id/textView1"
+        android:layout_alignEnd="@+id/textView1" />
+
+
 
 
 

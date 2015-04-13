@@ -1,5 +1,7 @@
 package com.example.trzewa.bandrider;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +21,8 @@ public class AddInstrumemtActivity extends ActionBarActivity {
         String[] elementy = {"strunowe", "dęte", "perkusyjne"};
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_instrumemt);
+        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences.Editor editor = settings.edit();
 
         final Spinner spinner = (Spinner)findViewById(R.id.spinner1);
 
