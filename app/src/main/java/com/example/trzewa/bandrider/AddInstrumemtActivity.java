@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,9 +29,32 @@ public class AddInstrumemtActivity extends ActionBarActivity {
         setContentView(R.layout.activity_add_instrumemt);
         NextButton = (Button) findViewById(R.id.ToInstSummary);
         ReturnButton = (Button) findViewById(R.id.Returnnp);
+        final EditText instname = (EditText)findViewById(R.id.editTextNick);
+        final EditText instowner = (EditText)findViewById(R.id.editTextLogin);
+
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = settings.edit();
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                String InstName = instname.getText().toString();
+                String InstOwner = instowner.getText().toString();
+                editor.putString(Constans.INST_NAME, InstName);
+                editor.putString(Constans.INST_OWNER, InstOwner);
+                editor.commit();
+                startActivity(new Intent(AddInstrumemtActivity.this, SummaryInstrumentActivity.class));
+
+            }
+        });
+        ReturnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+
+            }
+        });
         final Spinner spinner = (Spinner)findViewById(R.id.spinner1);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, elementy);
@@ -44,19 +68,26 @@ public class AddInstrumemtActivity extends ActionBarActivity {
 
                 Toast.makeText(AddInstrumemtActivity.this, "Wybrano opcję" + (id + 1), Toast.LENGTH_SHORT).show();
 
+                String category = null;
                 switch((int)position)
                 {
                     case 0:
                         //wybrano pierwszy element
                         break;
                     case 1:
-                        //wybrano drugi element
+                        category = "strunowe";
+                        editor.putString(Constans.INST_CATEGORY, category);
+                        editor.commit();
                         break;
                     case 2:
-                        //wybrano trzeci element
+                        category = "dęte";
+                        editor.putString(Constans.INST_CATEGORY, category);
+                        editor.commit();
                         break;
                     case 3:
-                        //wybrano czwarty element
+                        category = "perkusyjne";
+                        editor.putString(Constans.INST_CATEGORY, category);
+                        editor.commit();
                         break;
                     case 4:
                         //wybrano piąty element
@@ -69,22 +100,7 @@ public class AddInstrumemtActivity extends ActionBarActivity {
 
             }
         });
-        NextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                startActivity(new Intent(AddInstrumemtActivity.this, SummaryInstrumentActivity.class));
-
-            }
-        });
-        ReturnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                finish();
-
-            }
-        });
     }
 
 
