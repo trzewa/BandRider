@@ -42,7 +42,7 @@ public class AddActivity extends ActionBarActivity {
                 Toast.makeText(AddActivity.this, test, Toast.LENGTH_SHORT).show();
 
 
-                if (radioItemButton.getText() =="Instrument")
+                if (radioItemButton.getText().equals("Instrument"))
                 {
                     startActivity(new Intent(AddActivity.this, AddInstrumemtActivity.class));
                 }

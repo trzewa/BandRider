@@ -28,7 +28,7 @@ public class AddStuffActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String[] elementy2 = {"strunowe", "dęte", "perkusyjne"};
+        String[] elementy2 = {"wzmacniacz", "mikrofon", "głośnik"};
         setContentView(R.layout.activity_add_stuff);
         final EditText stuffname = (EditText)findViewById(R.id.editTextname);
         final EditText stuffowner = (EditText)findViewById(R.id.editTextowner);
@@ -72,25 +72,32 @@ public class AddStuffActivity extends Activity {
                                        int id, long position) {
 
                 Toast.makeText(AddStuffActivity.this, "Wybrano opcję" + (id + 1), Toast.LENGTH_SHORT).show();
-
+                String category=null;
                 switch((int)position)
                 {
                     case 0:
                         //wybrano pierwszy element
                         break;
                     case 1:
-                        //wybrano drugi element
+                        category = "wzmacniacz";
+                        editor.putString(Constans.STUFF_CATEGORY, category);
+                        editor.commit();
                         break;
                     case 2:
-                        //wybrano trzeci element
+                        category = "mikrofon";
+                        editor.putString(Constans.STUFF_CATEGORY, category);
+                        editor.commit();
                         break;
                     case 3:
-                        //wybrano czwarty element
+                        category = "głośnik";
+                        editor.putString(Constans.STUFF_CATEGORY, category);
+                        editor.commit();
                         break;
                     case 4:
                         //wybrano piąty element
                         break;
                 }
+
             }
 
             @Override
