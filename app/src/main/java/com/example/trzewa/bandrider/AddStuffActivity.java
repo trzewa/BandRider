@@ -11,26 +11,56 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class AddStuffActivity extends Activity {
     private Button NextButton;
     private Button ReturnButton;
+    private static final String STUFF_NAME = "name";
+    private static final String STUFF_OWNER = "owner";
+    private static final String STUFF_CATEGORY = "category";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String[] elementy2 = {"strunowe", "dęte", "perkusyjne"};
         setContentView(R.layout.activity_add_stuff);
+        final EditText stuffname = (EditText)findViewById(R.id.editTextname);
+        final EditText stuffowner = (EditText)findViewById(R.id.editTextowner);
+
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = settings.edit();
         NextButton = (Button) findViewById(R.id.ToStuffSummary);
         ReturnButton = (Button) findViewById(R.id.Return);
+        NextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                String StuffName = stuffname.getText().toString();
+                String StuffOwner = stuffowner.getText().toString();
+                editor.putString(Constans.STUFF_NAME, StuffName);
+                editor.putString(Constans.STUFF_OWNER, StuffOwner);
+                editor.commit();
+                startActivity(new Intent(AddStuffActivity.this, SummaryStuffActivity.class));
+
+            }
+        });
+        ReturnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+
+            }
+        });
 
         final Spinner spinner = (Spinner)findViewById(R.id.spinner2);
+
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, elementy2);
 
@@ -68,22 +98,7 @@ public class AddStuffActivity extends Activity {
 
             }
         });
-        NextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                startActivity(new Intent(AddStuffActivity.this, SummaryStuffActivity.class));
-
-            }
-        });
-        ReturnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                finish();
-
-            }
-        });
     }
 
 
