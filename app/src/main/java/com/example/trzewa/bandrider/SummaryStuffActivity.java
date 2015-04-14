@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.parse.ParseObject;
+
 
 public class SummaryStuffActivity extends ActionBarActivity {
 
@@ -25,6 +27,11 @@ public class SummaryStuffActivity extends ActionBarActivity {
         Stuff_name.setText("Nazwa:  " + stuff_name);
         Stuff_owner.setText("Właściciel:  " + stuff_owner);
         Stuff_category.setText("Kategoria :" + stuff_category);
+         ParseObject Stuff = new ParseObject("Stuff");
+         Stuff.put(Constans.STUFF_NAME, stuff_name);
+         Stuff.put(Constans.STUFF_OWNER, stuff_owner);
+         Stuff.put(Constans.STUFF_CATEGORY, stuff_category);
+         Stuff.saveInBackground();
 
     }
 

@@ -20,9 +20,7 @@ import android.widget.Toast;
 public class AddStuffActivity extends Activity {
     private Button NextButton;
     private Button ReturnButton;
-    private static final String STUFF_NAME = "name";
-    private static final String STUFF_OWNER = "owner";
-    private static final String STUFF_CATEGORY = "category";
+
 
 
     @Override

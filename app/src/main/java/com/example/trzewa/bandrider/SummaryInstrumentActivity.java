@@ -1,12 +1,16 @@
 package com.example.trzewa.bandrider;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.parse.ParseObject;
 
 
 public class SummaryInstrumentActivity extends ActionBarActivity {
@@ -18,13 +22,38 @@ public class SummaryInstrumentActivity extends ActionBarActivity {
         TextView Inst_name = (TextView)findViewById(R.id.textView6);
         TextView Inst_owner = (TextView)findViewById(R.id.textView8);
         TextView Inst_category = (TextView)findViewById(R.id.textView9);
+        Button SaveButton = (Button) findViewById(R.id.buttonSave);
+        Button ReturnButton = (Button) findViewById(R.id.buttonReturn);
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        String inst_name = settings.getString(Constans.INST_NAME, "");
-        String inst_owner = settings.getString(Constans.INST_OWNER, "");
-        String inst_category = settings.getString(Constans.INST_CATEGORY, "");
+        final String inst_name = settings.getString(Constans.INST_NAME, "");
+        final String inst_owner = settings.getString(Constans.INST_OWNER, "");
+        final String inst_category = settings.getString(Constans.INST_CATEGORY, "");
         Inst_name.setText("Nazwa:  " + inst_name);
         Inst_owner.setText("Właściciel:  " + inst_owner);
         Inst_category.setText("Kategoria :" + inst_category);
+        SaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+        ParseObject Instrument = new ParseObject("Instrument");
+        Instrument.put(Constans.INST_NAME, inst_name);
+        Instrument.put(Constans.INST_OWNER, inst_owner);
+        Instrument.put(Constans.INST_CATEGORY, inst_category);
+        Instrument.saveInBackground();
+
+
+            }
+        });
+        ReturnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                finish();
+            }
+        });
+
+
 
     }
 

@@ -1,10 +1,10 @@
 package com.example.trzewa.bandrider;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,27 +13,28 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class AddInstrumemtActivity extends ActionBarActivity {
-
+public class AddInstrumemtActivity extends Activity {
     private Button NextButton;
     private Button ReturnButton;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        String[] elementy = {"strunowe", "dęte", "perkusyjne"};
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_instrumemt);
-        NextButton = (Button) findViewById(R.id.ToInstSummary);
-        ReturnButton = (Button) findViewById(R.id.Returnnp);
-        final EditText instname = (EditText)findViewById(R.id.editTextNick);
-        final EditText instowner = (EditText)findViewById(R.id.editTextLogin);
+        String[] elementy2 = {"wzmacniacz", "mikrofon", "głośnik"};
+        setContentView(R.layout.activity_add_stuff);
+        final EditText instname = (EditText)findViewById(R.id.editTextname);
+        final EditText instowner = (EditText)findViewById(R.id.editTextowner);
 
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = settings.edit();
+        NextButton = (Button) findViewById(R.id.ToInstSummary);
+        ReturnButton = (Button) findViewById(R.id.Returnnp);
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,9 +56,11 @@ public class AddInstrumemtActivity extends ActionBarActivity {
 
             }
         });
-        final Spinner spinner = (Spinner)findViewById(R.id.spinner1);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, elementy);
+        final Spinner spinner = (Spinner)findViewById(R.id.spinner2);
+
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, elementy2);
 
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -67,8 +70,7 @@ public class AddInstrumemtActivity extends ActionBarActivity {
                                        int id, long position) {
 
                 Toast.makeText(AddInstrumemtActivity.this, "Wybrano opcję" + (id + 1), Toast.LENGTH_SHORT).show();
-
-                String category = null;
+                String category=null;
                 switch((int)position)
                 {
                     case 0:
@@ -93,6 +95,7 @@ public class AddInstrumemtActivity extends ActionBarActivity {
                         //wybrano piąty element
                         break;
                 }
+
             }
 
             @Override
@@ -107,7 +110,7 @@ public class AddInstrumemtActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add_instrumemt, menu);
+        getMenuInflater().inflate(R.menu.menu_add_stuff, menu);
         return true;
     }
 
