@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 
 public class AddStuffActivity extends Activity {
+
     private Button NextButton;
     private Button ReturnButton;
 

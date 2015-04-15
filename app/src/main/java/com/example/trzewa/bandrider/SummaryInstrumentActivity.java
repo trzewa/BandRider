@@ -18,7 +18,7 @@ public class SummaryInstrumentActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_summary_stuff);
+        setContentView(R.layout.activity_summary_instrument);
         TextView Inst_name = (TextView)findViewById(R.id.textView6);
         TextView Inst_owner = (TextView)findViewById(R.id.textView8);
         TextView Inst_category = (TextView)findViewById(R.id.textView9);

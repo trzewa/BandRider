@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 
 public class AddInstrumemtActivity extends Activity {
+    
     private Button NextButton;
     private Button ReturnButton;
 
@@ -26,8 +27,8 @@ public class AddInstrumemtActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String[] elementy2 = {"wzmacniacz", "mikrofon", "głośnik"};
-        setContentView(R.layout.activity_add_stuff);
+        String[] elementy = {"strunowe", "dęte", "perkusyjne"};
+        setContentView(R.layout.activity_add_instrumemt);
         final EditText instname = (EditText)findViewById(R.id.editTextname);
         final EditText instowner = (EditText)findViewById(R.id.editTextowner);
 
@@ -57,10 +58,10 @@ public class AddInstrumemtActivity extends Activity {
             }
         });
 
-        final Spinner spinner = (Spinner)findViewById(R.id.spinner2);
+        final Spinner spinner = (Spinner)findViewById(R.id.spinner1);
 
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, elementy2);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, elementy);
 
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
