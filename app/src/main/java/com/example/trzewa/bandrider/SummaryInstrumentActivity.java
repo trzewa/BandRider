@@ -16,7 +16,7 @@ import com.parse.ParseObject;
 public class SummaryInstrumentActivity extends ActionBarActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+      protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary_instrument);
         TextView Inst_name = (TextView)findViewById(R.id.textView6);
@@ -61,7 +61,7 @@ public class SummaryInstrumentActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_summary_stuff, menu);
+        getMenuInflater().inflate(R.menu.menu_summary_instrument, menu);
         return true;
     }
 

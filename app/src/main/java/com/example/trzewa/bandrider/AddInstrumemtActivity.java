@@ -29,8 +29,8 @@ public class AddInstrumemtActivity extends Activity {
         super.onCreate(savedInstanceState);
         String[] elementy = {"strunowe", "dęte", "perkusyjne"};
         setContentView(R.layout.activity_add_instrumemt);
-        final EditText instname = (EditText)findViewById(R.id.editTextname);
-        final EditText instowner = (EditText)findViewById(R.id.editTextowner);
+        final EditText instname = (EditText)findViewById(R.id.editTextname2);
+        final EditText instowner = (EditText)findViewById(R.id.editTextowner2);
 
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = settings.edit();

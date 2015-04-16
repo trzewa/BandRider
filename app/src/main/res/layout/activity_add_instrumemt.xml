@@ -22,20 +22,19 @@
         android:layout_height="wrap_content"
         android:text="Nazwa"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_above="@+id/editTextLogin"
+        android:layout_alignBottom="@+id/editTextowner2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextNick"
-        android:layout_below="@+id/textView1"
+        android:id="@+id/editTextname2"
+        android:layout_below="@+id/editTextowner2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="23dp"
-        android:layout_toEndOf="@+id/textView3"
-        android:layout_toRightOf="@+id/textView3" />
+        android:layout_toRightOf="@+id/Returnnp"
+        android:layout_toEndOf="@+id/Returnnp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -43,19 +42,19 @@
         android:layout_height="wrap_content"
         android:text="Właściciel"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_alignBottom="@+id/editTextLogin"
+        android:layout_alignBottom="@+id/editTextname2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextLogin"
-        android:layout_marginTop="17dp"
-        android:layout_below="@+id/editTextNick"
-        android:layout_alignLeft="@+id/editTextNick"
-        android:layout_alignStart="@+id/editTextNick"
-        android:autoLink="email" />
+        android:id="@+id/editTextowner2"
+        android:layout_marginTop="50dp"
+        android:autoLink="email"
+        android:layout_below="@+id/textView1"
+        android:layout_toEndOf="@+id/Returnnp"
+        android:layout_toRightOf="@+id/Returnnp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -63,18 +62,19 @@
         android:layout_height="wrap_content"
         android:text="kategoria"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_below="@+id/textView3"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="48dp" />
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_toRightOf="@+id/Returnnp"
-        android:layout_toEndOf="@+id/Returnnp" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/editTextname2"
+        android:layout_alignStart="@+id/editTextname2" />
 
 
 
