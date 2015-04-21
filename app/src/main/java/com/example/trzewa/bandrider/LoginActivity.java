@@ -33,6 +33,7 @@ public class LoginActivity extends ActionBarActivity {
 
                 logInUser();
 
+
             }
         });
         RegisterButton.setOnClickListener(new View.OnClickListener() {
@@ -104,11 +105,11 @@ public class LoginActivity extends ActionBarActivity {
                 if (user != null) {
                     // The user is logged in.
                     ChoiceActivity.startChoiceActivity(LoginActivity.this);
-
+                    finish();
 
                 } else {
                     // Signup failed. Look at the ParseException to see what happened.
-                    Toast.makeText(getApplicationContext(), "Login error: " + e.getMessage(),
+                    Toast.makeText(getApplicationContext(), "WPISZ DANE",
                             Toast.LENGTH_SHORT).show();
 
                 }

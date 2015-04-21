@@ -16,18 +16,19 @@ public class ChoiceActivity extends ActionBarActivity {
     Button edit_deleteButton;
     Button planRider;
 
-    private ParseUser mCurrentUser;
+    //private ParseUser mCurrentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
-        mCurrentUser = ParseUser.getCurrentUser();
-        if (mCurrentUser == null) {
-
-            LoginActivity.startLogInActivity(this);
-            finish();
+        //mCurrentUser = ParseUser.getCurrentUser();
+        if (ParseUser.getCurrentUser() == null) {
+            //Intent intent = new Intent(this, LoginActivity.class);
+            //startActivity(intent);
+            goToLogin();
+            
         }
         setContentView(R.layout.activity_choice);
         AddInstrumentButton = (Button) findViewById(R.id.buttonAdd);
@@ -40,6 +41,11 @@ public class ChoiceActivity extends ActionBarActivity {
 
             }
         });
+    }
+
+    private void goToLogin() {
+        LoginActivity.startLogInActivity(this);
+        finish();
     }
 
 
@@ -58,7 +64,10 @@ public class ChoiceActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) {
+
+            ParseUser.logOut();
+            goToLogin();
             return true;
         }
 
