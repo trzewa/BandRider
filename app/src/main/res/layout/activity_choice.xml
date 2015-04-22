@@ -7,54 +7,50 @@
     tools:context="com.example.trzewa.bandrider.ChoiceActivity">
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Ekran Opcji"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Wybierz co chcesz zrobić"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="49dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ff000000"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dodaj instrument"
         android:id="@+id/buttonAdd"
-        android:layout_marginTop="60dp"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edytuj/usuń"
         android:id="@+id/buttonEdit"
+        android:layout_marginTop="49dp"
         android:layout_below="@+id/buttonAdd"
-        android:layout_alignRight="@+id/buttonAdd"
-        android:layout_alignEnd="@+id/buttonAdd"
         android:layout_alignLeft="@+id/buttonAdd"
-        android:layout_alignStart="@+id/buttonAdd" />
+        android:layout_alignStart="@+id/buttonAdd"
+        android:layout_alignRight="@+id/buttonAdd"
+        android:layout_alignEnd="@+id/buttonAdd" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Zaplanuj Rider"
         android:id="@+id/buttonRider"
+        android:layout_marginTop="51dp"
         android:layout_below="@+id/buttonEdit"
         android:layout_alignLeft="@+id/buttonEdit"
         android:layout_alignStart="@+id/buttonEdit"
-        android:layout_alignRight="@+id/buttonAdd"
-        android:layout_alignEnd="@+id/buttonAdd" />
+        android:layout_alignRight="@+id/buttonEdit"
+        android:layout_alignEnd="@+id/buttonEdit" />
 
 
 </RelativeLayout>

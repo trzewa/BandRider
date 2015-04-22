@@ -22,6 +22,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
     private EditText PasswordEditText;
     //private EditText CityEditText;
     private Button CreateAccountButton;
+    private Button BackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
         //CityEditText = (EditText) findViewById(R.id.editText);
         CreateAccountButton = (Button) findViewById(R.id.buttonRejestruj);
         CreateAccountButton.setOnClickListener(this);
+        BackButton = (Button) findViewById((R.id.button3));
+        BackButton.setOnClickListener(this);
     }
 
 
@@ -65,9 +68,14 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.button3:
+                LoginActivity.startLogInActivity(RegisterActivity.this);
+                finish();
+                break;
             case R.id.buttonRejestruj:
                 signUpUser();
                 break;
+
         }
 
     }

@@ -11,23 +11,10 @@
     android:backgroundTintMode="src_over">
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ekran logowania"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textColor="#ffffffff"
-        android:background="#ff000000" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
         android:layout_marginTop="50dp"
         android:text="Login"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -69,7 +56,6 @@
         android:ems="10"
         android:textColor="#ff000000"
         android:password="true"
-        android:shadowColor="#ff000000"
         android:enabled="true"
         android:background="#ffffffff" />
 
@@ -79,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editTextPass"
         android:layout_marginTop="94dp"
-        android:text="Login"
+        android:text="Zaloguj"
         android:layout_alignLeft="@+id/buttonRegister"
         android:layout_alignStart="@+id/buttonRegister"
         android:layout_alignRight="@+id/buttonRegister"

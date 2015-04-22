@@ -3,8 +3,6 @@ package com.example.trzewa.bandrider;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -17,6 +15,8 @@ public class AddActivity extends ActionBarActivity {
     private RadioGroup radioChoiceGroup;
     private RadioButton radioItemButton;
     private Button btnDalej;
+    private Button btnWstecz;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +28,8 @@ public class AddActivity extends ActionBarActivity {
     public void addListenerOnButton() {
 
         radioChoiceGroup = (RadioGroup) findViewById(R.id.radioChoice);
-        btnDalej = (Button) findViewById(R.id.buttonDalej);
+        btnDalej = (Button) findViewById(R.id.button4);
+        btnWstecz = (Button) findViewById(R.id.buttonWstecz);
 
         btnDalej.setOnClickListener(new View.OnClickListener() {
 
@@ -42,7 +43,7 @@ public class AddActivity extends ActionBarActivity {
                 Toast.makeText(AddActivity.this, test, Toast.LENGTH_SHORT).show();
 
 
-                if (radioItemButton.getText().equals("Instrument"))
+                if (radioItemButton.getText().equals("INSTRUMENT"))
                 {
                     startActivity(new Intent(AddActivity.this, AddInstrumemtActivity.class));
                 }
@@ -56,6 +57,14 @@ public class AddActivity extends ActionBarActivity {
 
         });
 
+        btnWstecz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChoiceActivity.startChoiceActivity(AddActivity.this);
+                finish();
+
+            }
+        });
     }
 
 

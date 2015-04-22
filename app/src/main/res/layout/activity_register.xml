@@ -4,38 +4,29 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.trzewa.bandrider.RegisterActivity">
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:text="Rejestracja"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    tools:context="com.example.trzewa.bandrider.RegisterActivity"
+    android:background="@mipmap/ranges">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nick"
+        android:text="Login"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_alignTop="@+id/editTextNick"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="#ff000000"
+        android:textColor="#ffffffff" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editTextNick"
-        android:layout_below="@+id/textView1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="23dp"
-        android:layout_alignLeft="@+id/buttonRejestruj"
-        android:layout_alignStart="@+id/buttonRejestruj" />
+        android:background="#7d797979"
+        android:enabled="true"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/button3"
+        android:layout_toRightOf="@+id/button3" />
 
     <TextView
         android:id="@+id/textView3"
@@ -45,17 +36,25 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignTop="@+id/editTextLogin"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:autoText="false"
+        android:background="#ff000000"
+        android:textColor="#ffffffff" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editTextLogin"
-        android:layout_marginTop="17dp"
-        android:layout_below="@+id/editTextNick"
+        android:layout_marginTop="26dp"
+        android:autoLink="email"
+        android:background="#7d797979"
+        android:enabled="true"
+        android:inputType="textWebEmailAddress"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/editTextNick"
-        android:layout_alignStart="@+id/editTextNick"
-        android:autoLink="email" />
+        android:layout_alignStart="@+id/editTextNick" />
 
     <TextView
         android:id="@+id/textView4"
@@ -65,7 +64,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignTop="@+id/editTextPassword"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffffff"
+        android:background="#ff000000" />
 
 
     <EditText
@@ -77,9 +78,10 @@
         android:layout_marginTop="19dp"
         android:layout_below="@+id/editTextLogin"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentEnd="false"
         android:layout_alignLeft="@+id/editTextLogin"
-        android:layout_alignStart="@+id/editTextLogin" />
+        android:layout_alignStart="@+id/editTextLogin"
+        android:background="#7d797979" />
 
     <EditText
         android:layout_width="match_parent"
@@ -87,22 +89,11 @@
         android:id="@+id/editText"
         android:layout_below="@+id/editTextPassword"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentEnd="false"
         android:layout_marginTop="16dp"
         android:layout_alignLeft="@+id/editTextPassword"
-        android:layout_alignStart="@+id/editTextPassword" />
-
-    <Button
-        android:id="@+id/buttonRejestruj"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="login"
-        android:text="Zarejestruj"
-        android:layout_gravity="center"
-        android:layout_marginTop="132dp"
-        android:layout_below="@+id/editTextPassword"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignStart="@+id/textView1" />
+        android:layout_alignStart="@+id/editTextPassword"
+        android:background="#7d797979" />
 
     <TextView
         android:id="@+id/textView5"
@@ -112,7 +103,38 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignTop="@+id/editText"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#ff000000"
+        android:textColor="#ffffffff" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="wstecz"
+        android:id="@+id/button3"
+        android:textColor="#ffffffff"
+        android:background="#ff000000"
+        android:layout_alignTop="@+id/buttonRejestruj"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/buttonRejestruj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="login"
+        android:text="Zarejestruj"
+        android:layout_gravity="center"
+        android:background="#ff000000"
+        android:textColor="#ffffffff"
+        android:layout_marginTop="134dp"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"
+        android:layout_marginLeft="78dp"
+        android:layout_marginStart="78dp"
+        android:layout_alignRight="@+id/editText"
+        android:layout_alignEnd="@+id/editText" />
 
 
 </RelativeLayout>

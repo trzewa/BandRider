@@ -2,6 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.trzewa.bandrider.ChoiceActivity">
-    <item android:id="@+id/action_logout" android:title="Logout"
+    <item android:id="@+id/action_logout" android:title="Wyloguj"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

@@ -1,60 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
-
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Wybierz, co chcesz dodać"
+        android:text="Wybierz co chcesz dodać"
         android:id="@+id/textView7"
-        android:layout_gravity="center_horizontal"
-        android:paddingTop="120dp"
-        android:layout_weight="0.11" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:textColor="#ff000000"
+        android:textStyle="bold"
+        android:textSize="20dp" />
 
     <RadioGroup
-        android:id="@+id/radioChoice"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:paddingRight="25dp"
-        android:paddingBottom="10dp"
-        android:layout_weight="0.11">
-
-
-
-
-    <RadioButton
-        android:id="@+id/radioInstrument"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Instrument"
-        android:checked="true"
-        android:gravity="center"
-        android:layout_weight="0.11" />
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/radioChoice">
 
-    <RadioButton
-    android:id="@+id/radioSprzet"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Sprzęt"
-    android:layout_gravity="center_horizontal"
-    android:paddingRight="25dp"
-    android:paddingBottom="10dp"
-    android:layout_weight="0.11" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INSTRUMENT"
+            android:id="@+id/radioButton"
+            android:layout_below="@+id/textView7"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="46dp"
+            android:layout_gravity="center"
+            android:checked="true" />
 
-</RadioGroup>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SPRZĘT"
+            android:id="@+id/radioButton2"
+            android:layout_below="@+id/radioButton"
+            android:layout_marginTop="37dp"
+            android:layout_alignRight="@+id/radioButton"
+            android:layout_alignEnd="@+id/radioButton"
+            android:layout_alignLeft="@+id/radioButton"
+            android:layout_alignStart="@+id/radioButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="-18dp" />
+    </RadioGroup>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dalej"
-        android:id="@+id/buttonDalej"
-        android:layout_gravity="center_horizontal"
-        android:paddingTop="10dp"
-         />
+        android:text="WSTECZ"
+        android:id="@+id/buttonWstecz"
+        android:layout_gravity="left"
+        android:layout_alignTop="@+id/button4"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7" />
 
-</LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DALEJ"
+        android:id="@+id/button4"
+        android:layout_marginTop="79dp"
+        android:layout_below="@+id/radioChoice"
+        android:layout_alignRight="@+id/textView7"
+        android:layout_alignEnd="@+id/textView7" />
+
+</RelativeLayout>

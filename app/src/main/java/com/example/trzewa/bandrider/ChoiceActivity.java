@@ -28,7 +28,7 @@ public class ChoiceActivity extends ActionBarActivity {
             //Intent intent = new Intent(this, LoginActivity.class);
             //startActivity(intent);
             goToLogin();
-            
+
         }
         setContentView(R.layout.activity_choice);
         AddInstrumentButton = (Button) findViewById(R.id.buttonAdd);

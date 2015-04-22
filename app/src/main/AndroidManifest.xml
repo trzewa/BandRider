@@ -33,27 +33,27 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:label="BandRider Logowanie" >
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:label="@string/title_activity_register" >
+            android:label="BandRider Rejestracja" >
         </activity>
         <activity
             android:name=".ChoiceActivity"
-            android:label="@string/title_activity_choice" >
+            android:label="Witaj w BandRider!" >
         </activity>
         <activity
             android:name=".AddActivity"
-            android:label="@string/title_activity_add" >
+            android:label="Dodaj" >
         </activity>
         <activity
             android:name=".AddInstrumemtActivity"
-            android:label="@string/title_activity_add_instrumemt" >
+            android:label="Dodaj Instrument" >
         </activity>
         <activity
             android:name=".AddStuffActivity"
-            android:label="@string/title_activity_add_stuff" >
+            android:label="Dodaj Sprzęt" >
         </activity>
         <activity
             android:name=".SummaryInstrumentActivity"
