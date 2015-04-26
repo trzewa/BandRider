@@ -1,5 +1,7 @@
 package com.example.trzewa.bandrider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -14,6 +16,7 @@ import com.parse.ParseObject;
 
 
 public class SummaryInstrumentActivity extends ActionBarActivity {
+    private AlertDialog alertDialog;
 
     @Override
       protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +41,33 @@ public class SummaryInstrumentActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-        ParseObject Instrument = new ParseObject("Instrument");
-        Instrument.put(Constans.INST_NAME, inst_name);
-        Instrument.put(Constans.INST_OWNER, inst_owner);
-        Instrument.put(Constans.INST_CATEGORY, inst_category);
-        Instrument.put(Constans.INS_SWITCH_STATUS, inst_status);
-        Instrument.saveInBackground();
+
+                alertDialog = new AlertDialog.Builder(SummaryInstrumentActivity.this)
+                        .setTitle("NIezapisane zmiany")
+                        .setMessage("Istnieją niezapisane zmiany")
+                        .setPositiveButton("Zapisz", new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                ParseObject Instrument = new ParseObject("Instrument");
+                                Instrument.put(Constans.INST_NAME, inst_name);
+                                Instrument.put(Constans.INST_OWNER, inst_owner);
+                                Instrument.put(Constans.INST_CATEGORY, inst_category);
+                                Instrument.put(Constans.INS_SWITCH_STATUS, inst_status);
+                                Instrument.saveInBackground();
+                            }
+                        })
+                        .setNeutralButton("Cofnij", new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Anuluj", new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialog.cancel();
+                            }
+                        })
+                        .create();
+                alertDialog.show();
+
 
 
             }
