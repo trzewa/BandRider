@@ -10,9 +10,11 @@ public class Constans {
     public static final String STUFF_NAME = "name";
     public static final String STUFF_OWNER = "owner";
     public static final String STUFF_CATEGORY = "category";
+    public static final String STUFF_SWITCH_STATUS = "Switchstatus";
 
     //instrument
     public static final String INST_NAME = "name";
     public static final String INST_OWNER = "owner";
     public static final String INST_CATEGORY = "category";
+    public static final String INS_SWITCH_STATUS = "Switchstatus";
 }

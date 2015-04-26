@@ -11,8 +11,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,8 @@ public class AddInstrumemtActivity extends Activity {
     
     private Button NextButton;
     private Button ReturnButton;
+    private Switch Switch;
+    private String switchStatus;
 
 
 
@@ -36,6 +40,7 @@ public class AddInstrumemtActivity extends Activity {
         final SharedPreferences.Editor editor = settings.edit();
         NextButton = (Button) findViewById(R.id.ToInstSummary);
         ReturnButton = (Button) findViewById(R.id.Returnnp);
+        Switch = (Switch) findViewById(R.id.switch1);
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +62,23 @@ public class AddInstrumemtActivity extends Activity {
 
             }
         });
+        Switch.setChecked(true);
+        Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+
+                if(isChecked){
+                    switchStatus = "dostępny";
+                    editor.putString(Constans.INS_SWITCH_STATUS, switchStatus);
+                }else{
+                    switchStatus = "niedostępny";
+                    editor.putString(Constans.INS_SWITCH_STATUS, switchStatus);
+                }
+
+            }
+        });
         final Spinner spinner = (Spinner)findViewById(R.id.spinner1);
 
 
@@ -65,6 +86,7 @@ public class AddInstrumemtActivity extends Activity {
 
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
 
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,

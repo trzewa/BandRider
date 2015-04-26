@@ -85,9 +85,7 @@
         android:textOff="Nie"
         android:layout_above="@+id/spinner1"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/ToInstSummary"
-        android:layout_toStartOf="@+id/ToInstSummary" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
