@@ -1,5 +1,7 @@
 package com.example.trzewa.bandrider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -14,7 +16,7 @@ import com.parse.ParseObject;
 
 
 public class SummaryStuffActivity extends ActionBarActivity {
-
+   private AlertDialog alertDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,7 @@ public class SummaryStuffActivity extends ActionBarActivity {
         final String stuff_owner = settings.getString(Constans.STUFF_OWNER, "");
         final String stuff_category = settings.getString(Constans.STUFF_CATEGORY, "");
         final String stuff_status = settings.getString(Constans.STUFF_SWITCH_STATUS, "");
+
         Stuff_name.setText("Nazwa:  " + stuff_name);
         Stuff_owner.setText("Właściciel:  " + stuff_owner);
         Stuff_category.setText("Kategoria :" + stuff_category);
@@ -39,12 +42,32 @@ public class SummaryStuffActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                ParseObject Stuff = new ParseObject("Stuff");
-                Stuff.put(Constans.STUFF_NAME, stuff_name);
-                Stuff.put(Constans.STUFF_OWNER, stuff_owner);
-                Stuff.put(Constans.STUFF_CATEGORY, stuff_category);
-                Stuff.put(Constans.STUFF_SWITCH_STATUS, stuff_status);
-                Stuff.saveInBackground();
+
+                      alertDialog = new AlertDialog.Builder(SummaryStuffActivity.this)
+                        .setTitle("NIezapisane zmiany")
+                        .setMessage("Istnieją niezapisane zmiany")
+                        .setPositiveButton("Zapisz", new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                ParseObject Stuff = new ParseObject("Stuff");
+                                Stuff.put(Constans.STUFF_NAME, stuff_name);
+                                Stuff.put(Constans.STUFF_OWNER, stuff_owner);
+                                Stuff.put(Constans.STUFF_CATEGORY, stuff_category);
+                                Stuff.put(Constans.STUFF_SWITCH_STATUS, stuff_status);
+                                Stuff.saveInBackground();
+                            }
+                        })
+                        .setNeutralButton("Cofnij", new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Anuluj", new AlertDialog.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                alertDialog.cancel();
+                            }
+                        })
+                        .create();
+                alertDialog.show();
 
 
             }
