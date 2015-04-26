@@ -101,7 +101,15 @@
         android:layout_alignRight="@+id/spinner2"
         android:layout_alignEnd="@+id/spinner2" />
 
-
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dostępność"
+        android:id="@+id/switch2"
+        android:textOn="Start"
+        android:textOff="Stop"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

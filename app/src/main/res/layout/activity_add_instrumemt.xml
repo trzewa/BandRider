@@ -98,10 +98,16 @@
         android:layout_alignRight="@+id/textView1"
         android:layout_alignEnd="@+id/textView1" />
 
-
-
-
-
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dostępność"
+        android:id="@+id/switch1"
+        android:textOn="Tak"
+        android:textOff="Nie"
+        android:layout_below="@+id/spinner1"
+        android:layout_toLeftOf="@+id/ToInstSummary"
+        android:layout_toStartOf="@+id/ToInstSummary" />
 
 
 </RelativeLayout>
