@@ -22,15 +22,18 @@ public class SummaryStuffActivity extends ActionBarActivity {
         TextView Stuff_name = (TextView)findViewById(R.id.textView6);
         TextView Stuff_owner = (TextView)findViewById(R.id.textView8);
         TextView Stuff_category = (TextView)findViewById(R.id.textView9);
+        TextView Stuff_status = (TextView)findViewById(R.id.textView11);
         Button SaveButton = (Button) findViewById(R.id.button2);
         Button ReturnButton = (Button) findViewById(R.id.button);
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         final String stuff_name = settings.getString(Constans.STUFF_NAME, "");
         final String stuff_owner = settings.getString(Constans.STUFF_OWNER, "");
         final String stuff_category = settings.getString(Constans.STUFF_CATEGORY, "");
+        final String stuff_status = settings.getString(Constans.STUFF_SWITCH_STATUS, "");
         Stuff_name.setText("Nazwa:  " + stuff_name);
         Stuff_owner.setText("Właściciel:  " + stuff_owner);
         Stuff_category.setText("Kategoria :" + stuff_category);
+        Stuff_status.setText("Dostępność :" + stuff_status);
 
         SaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +43,7 @@ public class SummaryStuffActivity extends ActionBarActivity {
                 Stuff.put(Constans.STUFF_NAME, stuff_name);
                 Stuff.put(Constans.STUFF_OWNER, stuff_owner);
                 Stuff.put(Constans.STUFF_CATEGORY, stuff_category);
+                Stuff.put(Constans.STUFF_SWITCH_STATUS, stuff_status);
                 Stuff.saveInBackground();
 
 

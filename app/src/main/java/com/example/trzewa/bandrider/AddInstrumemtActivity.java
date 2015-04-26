@@ -72,9 +72,11 @@ public class AddInstrumemtActivity extends Activity {
                 if(isChecked){
                     switchStatus = "dostępny";
                     editor.putString(Constans.INS_SWITCH_STATUS, switchStatus);
+                    editor.commit();
                 }else{
                     switchStatus = "niedostępny";
                     editor.putString(Constans.INS_SWITCH_STATUS, switchStatus);
+                    editor.commit();
                 }
 
             }

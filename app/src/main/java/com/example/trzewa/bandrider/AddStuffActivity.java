@@ -11,8 +11,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,8 @@ public class AddStuffActivity extends Activity {
 
     private Button NextButton;
     private Button ReturnButton;
+    private android.widget.Switch Switch;
+    private String switchStatus;
 
 
 
@@ -36,6 +40,7 @@ public class AddStuffActivity extends Activity {
         final SharedPreferences.Editor editor = settings.edit();
         NextButton = (Button) findViewById(R.id.ToStuffSummary);
         ReturnButton = (Button) findViewById(R.id.Return);
+        Switch = (Switch) findViewById(R.id.switch2);
         NextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +59,26 @@ public class AddStuffActivity extends Activity {
             public void onClick(View v) {
 
                 finish();
+
+            }
+        });
+
+        Switch.setChecked(true);
+        Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+
+                if(isChecked){
+                    switchStatus = "dostępny";
+                    editor.putString(Constans.STUFF_SWITCH_STATUS, switchStatus);
+                    editor.commit();
+                }else{
+                    switchStatus = "niedostępny";
+                    editor.putString(Constans.STUFF_SWITCH_STATUS, switchStatus);
+                    editor.commit();
+                }
 
             }
         });

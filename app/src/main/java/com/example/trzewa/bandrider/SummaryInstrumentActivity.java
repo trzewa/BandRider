@@ -22,15 +22,18 @@ public class SummaryInstrumentActivity extends ActionBarActivity {
         TextView Inst_name = (TextView)findViewById(R.id.textView6);
         TextView Inst_owner = (TextView)findViewById(R.id.textView8);
         TextView Inst_category = (TextView)findViewById(R.id.textView9);
+        TextView Inst_status = (TextView)findViewById(R.id.textView10);
         Button SaveButton = (Button) findViewById(R.id.buttonSave);
         Button ReturnButton = (Button) findViewById(R.id.buttonReturn);
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         final String inst_name = settings.getString(Constans.INST_NAME, "");
         final String inst_owner = settings.getString(Constans.INST_OWNER, "");
         final String inst_category = settings.getString(Constans.INST_CATEGORY, "");
+        final String inst_status = settings.getString(Constans.INS_SWITCH_STATUS, "");
         Inst_name.setText("Nazwa:  " + inst_name);
         Inst_owner.setText("Właściciel:  " + inst_owner);
         Inst_category.setText("Kategoria :" + inst_category);
+        Inst_status.setText("Dostępność :" + inst_status);
         SaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +42,7 @@ public class SummaryInstrumentActivity extends ActionBarActivity {
         Instrument.put(Constans.INST_NAME, inst_name);
         Instrument.put(Constans.INST_OWNER, inst_owner);
         Instrument.put(Constans.INST_CATEGORY, inst_category);
+        Instrument.put(Constans.INS_SWITCH_STATUS, inst_status);
         Instrument.saveInBackground();
 
 
