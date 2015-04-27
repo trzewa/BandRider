@@ -14,5 +14,7 @@
     <string name="title_activity_summary_instrument">SummaryInstrumentActivity</string>
     <string name="title_activity_summary_stuff">SummaryStuffActivity</string>
     <string name="title_activity_plan_rider">PlanRiderActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="about">O programie</string>
 
 </resources>

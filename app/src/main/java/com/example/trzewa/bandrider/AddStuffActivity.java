@@ -99,9 +99,7 @@ public class AddStuffActivity extends Activity {
                 String category=null;
                 switch((int)position)
                 {
-                    case 0:
-                        //wybrano pierwszy element
-                        break;
+
                     case 1:
                         category = "wzmacniacz";
                         editor.putString(Constans.STUFF_CATEGORY, category);
