@@ -4,4 +4,6 @@
     tools:context="com.example.trzewa.bandrider.ChoiceActivity">
     <item android:id="@+id/action_logout" android:title="Wyloguj"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_about" android:title="O aplikacji"
+        android:orderInCategory="100" app:showAsAction="never" />
 </menu>

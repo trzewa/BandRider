@@ -71,6 +71,12 @@ public class ChoiceActivity extends ActionBarActivity {
             return true;
         }
 
+        if (id == R.id.action_about) {
+
+            AboutActivity.Show(ChoiceActivity.this);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
