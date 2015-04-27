@@ -41,6 +41,16 @@ public class ChoiceActivity extends ActionBarActivity {
 
             }
         });
+        planRider = (Button) findViewById(R.id.buttonRider);
+        planRider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ChoiceActivity.this, PlanRiderActivity.class));
+                finish();
+
+            }
+        });
     }
 
     private void goToLogin() {
