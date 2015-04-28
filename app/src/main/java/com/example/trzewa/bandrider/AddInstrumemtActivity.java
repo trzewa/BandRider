@@ -43,6 +43,8 @@ public class AddInstrumemtActivity extends Activity {
         ParseUser currentUser = ParseUser.getCurrentUser();
         String user_name = currentUser.getUsername();
         instowner.setText(user_name);
+        editor.putString(Constans.INS_SWITCH_STATUS, "dostępny");//zainicjuje, że przedmiot jest dostępny, jezeli nie zostanie zmieniona opcja dostępności
+        editor.putString(Constans.INST_CATEGORY, "strunowe");//zainicjuje jego kategorie na strunowe
         NextButton = (Button) findViewById(R.id.ToInstSummary);
         ReturnButton = (Button) findViewById(R.id.Returnnp);
         Switch = (Switch) findViewById(R.id.switch1);
@@ -101,8 +103,8 @@ public class AddInstrumemtActivity extends Activity {
                                        int id, long position) {
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 String test = currentUser.getUsername();
-                Toast.makeText(AddInstrumemtActivity.this, "Wybrano opcję" + (id + 1), Toast.LENGTH_SHORT).show();
-                Toast.makeText(AddInstrumemtActivity.this, "Wybrano opcję" + (test), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddInstrumemtActivity.this, "Wybrano opcję " + (id + 1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddInstrumemtActivity.this, "Wybrano opcję " + (test), Toast.LENGTH_SHORT).show();
                 String category=null;
                 switch((int)position)
                 {
