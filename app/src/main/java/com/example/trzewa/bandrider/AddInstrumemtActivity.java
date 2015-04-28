@@ -44,7 +44,8 @@ public class AddInstrumemtActivity extends Activity {
         String user_name = currentUser.getUsername();
         instowner.setText(user_name);
         editor.putString(Constans.INS_SWITCH_STATUS, "dostępny");//zainicjuje, że przedmiot jest dostępny, jezeli nie zostanie zmieniona opcja dostępności
-        editor.putString(Constans.INST_CATEGORY, "strunowe");//zainicjuje jego kategorie na strunowe
+      //  editor.putString(Constans.INST_CATEGORY, "strunowe");//zainicjuje jego kategorie na strunowe
+        editor.commit();
         NextButton = (Button) findViewById(R.id.ToInstSummary);
         ReturnButton = (Button) findViewById(R.id.Returnnp);
         Switch = (Switch) findViewById(R.id.switch1);
@@ -106,25 +107,29 @@ public class AddInstrumemtActivity extends Activity {
                 Toast.makeText(AddInstrumemtActivity.this, "Wybrano opcję " + (id + 1), Toast.LENGTH_SHORT).show();
                 Toast.makeText(AddInstrumemtActivity.this, "Wybrano opcję " + (test), Toast.LENGTH_SHORT).show();
                 String category=null;
+                editor.remove(Constans.INST_CATEGORY).commit();
                 switch((int)position)
                 {
                     case 0:
-                        //wybrano pierwszy element
-                        break;
-                    case 1:
                         category = "strunowe";
                         editor.putString(Constans.INST_CATEGORY, category);
+                        Toast.makeText(AddInstrumemtActivity.this, category, Toast.LENGTH_SHORT).show();
+                        editor.commit();
+                        break;
+                    case 1:
+                        category = "dęte";
+                        editor.putString(Constans.INST_CATEGORY, category);
+                        Toast.makeText(AddInstrumemtActivity.this, category, Toast.LENGTH_SHORT).show();
                         editor.commit();
                         break;
                     case 2:
-                        category = "dęte";
+                        category = "perkusyjne";
                         editor.putString(Constans.INST_CATEGORY, category);
+                        Toast.makeText(AddInstrumemtActivity.this, category, Toast.LENGTH_SHORT).show();
                         editor.commit();
                         break;
                     case 3:
-                        category = "perkusyjne";
-                        editor.putString(Constans.INST_CATEGORY, category);
-                        editor.commit();
+
                         break;
                     case 4:
                         //wybrano piąty element
