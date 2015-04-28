@@ -18,6 +18,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseUser;
+
 
 public class AddInstrumemtActivity extends Activity {
     
@@ -38,6 +40,9 @@ public class AddInstrumemtActivity extends Activity {
 
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = settings.edit();
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String user_name = currentUser.getUsername();
+        instowner.setText(user_name);
         NextButton = (Button) findViewById(R.id.ToInstSummary);
         ReturnButton = (Button) findViewById(R.id.Returnnp);
         Switch = (Switch) findViewById(R.id.switch1);
@@ -46,6 +51,7 @@ public class AddInstrumemtActivity extends Activity {
             public void onClick(View v) {
 
                 String InstName = instname.getText().toString();
+
                 String InstOwner = instowner.getText().toString();
                 editor.putString(Constans.INST_NAME, InstName);
                 editor.putString(Constans.INST_OWNER, InstOwner);
@@ -93,8 +99,10 @@ public class AddInstrumemtActivity extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int id, long position) {
-
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                String test = currentUser.getUsername();
                 Toast.makeText(AddInstrumemtActivity.this, "Wybrano opcję" + (id + 1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddInstrumemtActivity.this, "Wybrano opcję" + (test), Toast.LENGTH_SHORT).show();
                 String category=null;
                 switch((int)position)
                 {

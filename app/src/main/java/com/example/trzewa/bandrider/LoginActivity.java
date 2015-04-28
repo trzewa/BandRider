@@ -1,5 +1,7 @@
 package com.example.trzewa.bandrider;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,6 +25,7 @@ public class LoginActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         bindFields();
 
         Button RegisterButton = (Button) findViewById(R.id.buttonRegister);
@@ -104,6 +107,12 @@ public class LoginActivity extends ActionBarActivity {
             public void done(ParseUser user, ParseException e) {
                 if (user != null) {
                     // The user is logged in.
+
+                    final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                    final SharedPreferences.Editor editor = settings.edit();
+                    String UserName = user.getUsername();
+                    editor.putString(Constans.USER_PARSE_KEY, UserName);
+                    editor.commit();
                     ChoiceActivity.startChoiceActivity(LoginActivity.this);
                     finish();
 

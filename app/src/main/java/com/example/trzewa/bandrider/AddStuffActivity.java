@@ -18,6 +18,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.ParseUser;
+
 
 public class AddStuffActivity extends Activity {
 
@@ -38,6 +40,11 @@ public class AddStuffActivity extends Activity {
 
         final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
         final SharedPreferences.Editor editor = settings.edit();
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String user_name = currentUser.getUsername();
+        stuffowner.setText(user_name);
+
         NextButton = (Button) findViewById(R.id.ToStuffSummary);
         ReturnButton = (Button) findViewById(R.id.Return);
         Switch = (Switch) findViewById(R.id.switch2);
