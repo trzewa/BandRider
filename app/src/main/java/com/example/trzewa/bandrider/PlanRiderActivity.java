@@ -29,10 +29,9 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class PlanRiderActivity extends Activity implements View.OnClickListener {
+public class PlanRiderActivity extends Activity  {
     private AlertDialog alertDialog;
     private static final String TAG = "DialogDemo";
-    private Button showDialogButton;
     private Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +44,6 @@ public class PlanRiderActivity extends Activity implements View.OnClickListener 
         if (networkstate == true) {
 
             Toast.makeText(getApplicationContext(), "nawiazano połączenie", Toast.LENGTH_LONG).show();
-            initView();
-            //initViewAction();
             showDialogButtonClick();
 
 
@@ -125,22 +122,6 @@ public class PlanRiderActivity extends Activity implements View.OnClickListener 
 
     }
 
-    private void initView() {
-        showDialogButton =
-                (Button) findViewById(R.id.show_dialog_btn);
-        showDialogButton.setVisibility(View.INVISIBLE);
-    }
-
-
-
-    @Override
-    public void onClick(View view) {
-
-        if (view.equals(showDialogButton)) {
-            showDialogButtonClick();
-        }
-    }
-
     private int selected = 0;
     private int buffKey = 0; // add buffer value
     private void showDialogButtonClick() {
@@ -183,7 +164,7 @@ public class PlanRiderActivity extends Activity implements View.OnClickListener 
                                         .show();
                                 //set buff to selected
                                 selected = buffKey;
-                                showDialogButton.setVisibility(View.VISIBLE);
+                                
                             }
                         }
                 )
