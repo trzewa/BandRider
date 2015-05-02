@@ -5,30 +5,43 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class PlanRiderActivity extends ActionBarActivity {
     private AlertDialog alertDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_rider);
         final Context context = getApplicationContext();
         boolean networkstate = Utilities.getConnectivityStatus(context);
-
-        if (networkstate == true)
-        {
+        final ListView listView = (ListView) findViewById(R.id.listViewRaider);
+        if (networkstate == true) {
 
             Toast.makeText(getApplicationContext(), "nawiazano połączenie", Toast.LENGTH_LONG).show();
 
-        }
-        else
-        {
+        } else {
             alertDialog = new AlertDialog.Builder(PlanRiderActivity.this)
                     .setTitle("Brak Internetu")
                     .setMessage("brak połączenia z siecią Internet")
@@ -42,9 +55,95 @@ public class PlanRiderActivity extends ActionBarActivity {
 
 
         }
+        final Spinner spinner = (Spinner) findViewById(R.id.spinnerCategory);
+
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Constans.ELEMENTY);
+
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int id, long position) {
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                String test = currentUser.getUsername();
+                Toast.makeText(PlanRiderActivity.this, "Wybrano opcję " + (id + 1), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PlanRiderActivity.this, "Wybrano opcję " + (test), Toast.LENGTH_SHORT).show();
+                String category = null;
+
+                switch ((int) position) {
+                    case 0:
+                        category = "strunowe";
+
+                        Toast.makeText(PlanRiderActivity.this, category, Toast.LENGTH_SHORT).show();
+                        listaZmiana(category);
+                        break;
+                    case 1:
+                        category = "dęte";
+                        Toast.makeText(PlanRiderActivity.this, category, Toast.LENGTH_SHORT).show();
+                        listaZmiana(category);
+                        break;
+                    case 2:
+                        category = "perkusyjne";
+
+                        Toast.makeText(PlanRiderActivity.this, category, Toast.LENGTH_SHORT).show();
+
+                        break;
+                    case 3:
+
+                        break;
+                    case 4:
+                        //wybrano piąty element
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+            }
+        });
+
+
+
+
+
+
+
+
 
     }
 
+
+    public void listaZmiana (String category) {
+        Toast.makeText(PlanRiderActivity.this, category + " OKI", Toast.LENGTH_SHORT).show();
+        /*ParseQuery<ParseObject> query = ParseQuery.getQuery(category);
+        query.whereEqualTo("category", category);
+
+
+        query.findInBackground(new FindCallback<ParseObject>()
+
+        {
+            public void done(List<ParseObject> scoreList, ParseException e) {
+                if (e == null) {
+                    Log.d("name", "Retrieved " + scoreList.size() + " scores");
+
+                } else {
+                    Log.d("name", "Error: " + e.getMessage());
+                }
+            }
+
+            @Override
+            public void done(List<ParseObject> parseObjects, com.parse.ParseException e) {
+
+            }
+
+        })
+*/
+   ; }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
