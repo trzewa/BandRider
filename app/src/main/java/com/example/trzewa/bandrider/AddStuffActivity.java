@@ -55,6 +55,7 @@ public class AddStuffActivity extends Activity {
                 String StuffName = stuffname.getText().toString();
                 String StuffOwner = stuffowner.getText().toString();
                 editor.putString(Constans.STUFF_NAME, StuffName);
+                editor.putString(Constans.INS_SWITCH_STATUS, "dostępny");//zainicjuje, że przedmiot jest dostępny, jezeli nie zostanie zmieniona opcja dostępności
                 editor.putString(Constans.STUFF_OWNER, StuffOwner);
                 editor.commit();
                 startActivity(new Intent(AddStuffActivity.this, SummaryStuffActivity.class));
@@ -107,17 +108,17 @@ public class AddStuffActivity extends Activity {
                 switch((int)position)
                 {
 
-                    case 1:
+                    case 0:
                         category = "wzmacniacz";
                         editor.putString(Constans.STUFF_CATEGORY, category);
                         editor.commit();
                         break;
-                    case 2:
+                    case 1:
                         category = "mikrofon";
                         editor.putString(Constans.STUFF_CATEGORY, category);
                         editor.commit();
                         break;
-                    case 3:
+                    case 2:
                         category = "głośnik";
                         editor.putString(Constans.STUFF_CATEGORY, category);
                         editor.commit();

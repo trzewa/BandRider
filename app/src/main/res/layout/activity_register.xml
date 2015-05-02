@@ -5,7 +5,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.trzewa.bandrider.RegisterActivity"
-    android:background="@mipmap/ranges">
+    android:background="@mipmap/ranges"
+    >
 
     <TextView
         android:id="@+id/textView2"
