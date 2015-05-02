@@ -32,3 +32,22 @@ alerty(okienka dialogowe) po naciśnięciu przycisku zapisz z informacją dla u�
 co dalej - zaplanować zarys ridera - jak ma wyglądać mechanizm działania (sugeruję uruchamianie go w tle jako usługa ale trzeba o tym pogadać)
 
 
+szablon działania dla przykładowej listy
+if selected.equals("Instrumenty") // albo może lepiej case
+            {
+              ładujemy widok dla listy instrumentów
+              tworzymy adapter
+              na liście głównej najlepiej jakby elementy wyglądały tak samo np.
+              nazwa instrumentu właściciel ocena
+              dla sprzętu
+              nazwa instrumentu właściciel ocena
+              a np różne dla item_selected
+            }
+użytkownik przed pokazaniem mu listy musi wybrać co go interesuje - widzę to tak:
+1. wyświetlamy listę wyboru kategorii: np. taką instrumenty, sprzęt, akcesoria - można to zrobić jako okno dialogowe pojawiające się po naciśnięciu przycisku(może to być w tej samej aktywności co lista)
+2.domyślnie lista jest niewidoczna - na początku widzimy tylko przycisk uruchamiający okno dialogowe z wyborem dopiero po wybraniu kategorii się pojawia
+3. użytkownik wybrał kategorię instrumenty - w tym momencie z bazy parse z tabeli instrumenty wybieramy co tam jest i sobie ładujemy do listy oczywiście trzeba to ułożyć, żeby jakoś wyglądało
+4. ustawiamy listę na widoczną
+ a później to już z górki;-)
+oczywiście powinno to być zrobione jeszcze w ten sposób, że jak wybierze instrumenty to później powinien wybrać kategorię instrumentu ale może aż tak nie róbmy ważne żeby pokazać, ze działa...
+lista dla sprzętu na pewno będzie się różniła układem od instrumentów dlatego rozsądnie byłoby stworzyć dla każdego rodzaju listy layout i odpowiednio ładować wygląd zależnie od wyboru
