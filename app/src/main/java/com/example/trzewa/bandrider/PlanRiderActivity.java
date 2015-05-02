@@ -33,6 +33,9 @@ public class PlanRiderActivity extends Activity  {
     private AlertDialog alertDialog;
     private static final String TAG = "DialogDemo";
     private Context mContext;
+    ListView listView;
+    final CharSequence[] choiceList =
+            {"Instrumenty", "Sprzęt" , "Akcesoria" };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +43,30 @@ public class PlanRiderActivity extends Activity  {
         final Context context = getApplicationContext();
         mContext = this;
         boolean networkstate = Utilities.getConnectivityStatus(context);
-        final ListView listView = (ListView) findViewById(R.id.listViewRaider);
+
+        listView = (ListView) findViewById(R.id.listViewRaider);
+        //listView.setVisibility(View.INVISIBLE);
         if (networkstate == true) {
 
             Toast.makeText(getApplicationContext(), "nawiazano połączenie", Toast.LENGTH_LONG).show();
-            showDialogButtonClick();
+            int selected = showDialogButtonClick();
+            //Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
+            /*
+
+            tutaj obsługa listy - zmienna selected zwraca indeks z tablicy choiceList
+            zależnie co zostało zwrócone możemy zrobić tu obsługę dla odpowiedniej listy np.
+
+            if selected.equals("Instrumenty") // albo może lepiej case
+            {
+              ładujemy widok dla listy instrumentów
+              tworzymy adapter
+              na liście głównej najlepiej jakby elementy wyglądały tak samo np.
+              nazwa instrumentu właściciel ocena
+              dla sprzętu
+              nazwa instrumentu właściciel ocena
+              a np różne dla item_selected
+            }
+             */
 
 
 
@@ -124,14 +146,13 @@ public class PlanRiderActivity extends Activity  {
 
     private int selected = 0;
     private int buffKey = 0; // add buffer value
-    private void showDialogButtonClick() {
+    private int showDialogButtonClick() {
         Log.i(TAG, "show Dialog ButtonClick");
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(mContext);
         builder.setTitle("Wybierz kategorię");
 
-        final CharSequence[] choiceList =
-                {"Instrumenty", "Sprzęt" , "Akcesoria" };
+
 
         builder.setSingleChoiceItems(
                 choiceList,
@@ -164,9 +185,11 @@ public class PlanRiderActivity extends Activity  {
                                         .show();
                                 //set buff to selected
                                 selected = buffKey;
+                               // listView.setVisibility(View.VISIBLE);
 
                             }
                         }
+
                 )
                 .setNegativeButton("Anuluj",
                         new DialogInterface.OnClickListener()
@@ -186,6 +209,7 @@ public class PlanRiderActivity extends Activity  {
 
         AlertDialog alert = builder.create();
         alert.show();
+        return selected;
     }
 
 
