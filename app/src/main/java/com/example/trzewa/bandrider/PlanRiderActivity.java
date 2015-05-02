@@ -1,5 +1,6 @@
 package com.example.trzewa.bandrider;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -27,19 +29,28 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class PlanRiderActivity extends ActionBarActivity {
+public class PlanRiderActivity extends Activity implements View.OnClickListener {
     private AlertDialog alertDialog;
-
+    private static final String TAG = "DialogDemo";
+    private Button showDialogButton;
+    private Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_rider);
         final Context context = getApplicationContext();
+        mContext = this;
         boolean networkstate = Utilities.getConnectivityStatus(context);
         final ListView listView = (ListView) findViewById(R.id.listViewRaider);
         if (networkstate == true) {
 
             Toast.makeText(getApplicationContext(), "nawiazano połączenie", Toast.LENGTH_LONG).show();
+            initView();
+            //initViewAction();
+            showDialogButtonClick();
+
+
+
 
         } else {
             alertDialog = new AlertDialog.Builder(PlanRiderActivity.this)
@@ -55,7 +66,7 @@ public class PlanRiderActivity extends ActionBarActivity {
 
 
         }
-        final Spinner spinner = (Spinner) findViewById(R.id.spinnerCategory);
+        /*final Spinner spinner = (Spinner) findViewById(R.id.spinnerCategory);
 
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Constans.ELEMENTY);
@@ -105,16 +116,93 @@ public class PlanRiderActivity extends ActionBarActivity {
             public void onNothingSelected(AdapterView<?> arg0) {
 
             }
-        });
+        });*/
 
 
 
 
 
+    }
+
+    private void initView() {
+        showDialogButton =
+                (Button) findViewById(R.id.show_dialog_btn);
+        showDialogButton.setVisibility();
+    }
 
 
 
+    @Override
+    public void onClick(View view) {
 
+        if (view.equals(showDialogButton)) {
+            showDialogButtonClick();
+        }
+    }
+
+    private int selected = 0;
+    private int buffKey = 0; // add buffer value
+    private void showDialogButtonClick() {
+        Log.i(TAG, "show Dialog ButtonClick");
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(mContext);
+        builder.setTitle("Wybierz kategorię");
+
+        final CharSequence[] choiceList =
+                {"Instrumenty", "Sprzęt" , "Akcesoria" };
+
+        builder.setSingleChoiceItems(
+                choiceList,
+                selected,
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(
+                            DialogInterface dialog,
+                            int which) {
+                        //set to buffKey instead of selected
+                        //(when cancel not save to selected)
+                        buffKey = which;
+                    }
+                })
+                .setCancelable(false)
+                .setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                Log.d(TAG,"Which value="+which);
+                                Log.d(TAG,"Selected value="+buffKey);
+                                Toast.makeText(
+                                        mContext,
+                                        "Select "+choiceList[buffKey],
+                                        Toast.LENGTH_SHORT
+                                )
+                                        .show();
+                                //set buff to selected
+                                selected = buffKey;
+                            }
+                        }
+                )
+                .setNegativeButton("Anuluj",
+                        new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                Toast.makeText(
+                                        mContext,
+                                        "Cancel click",
+                                        Toast.LENGTH_SHORT
+                                )
+                                        .show();
+                            }
+                        }
+                );
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 
