@@ -118,6 +118,7 @@ public class PlanRiderActivity extends ActionBarActivity {
     }
 
 
+
     public void listaZmiana (String category) {
         Toast.makeText(PlanRiderActivity.this, category + " OKI", Toast.LENGTH_SHORT).show();
         /*ParseQuery<ParseObject> query = ParseQuery.getQuery(category);
