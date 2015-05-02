@@ -164,7 +164,7 @@ public class PlanRiderActivity extends Activity  {
                                         .show();
                                 //set buff to selected
                                 selected = buffKey;
-                                
+
                             }
                         }
                 )
