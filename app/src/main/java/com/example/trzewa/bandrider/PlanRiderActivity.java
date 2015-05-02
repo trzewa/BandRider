@@ -58,6 +58,7 @@ public class PlanRiderActivity extends Activity implements View.OnClickListener 
                     .setMessage("brak połączenia z siecią Internet")
                     .setNegativeButton("Ok", new AlertDialog.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
+                            finish();
                             alertDialog.cancel();
                         }
                     })
@@ -127,7 +128,7 @@ public class PlanRiderActivity extends Activity implements View.OnClickListener 
     private void initView() {
         showDialogButton =
                 (Button) findViewById(R.id.show_dialog_btn);
-        showDialogButton.setVisibility();
+        showDialogButton.setVisibility(View.INVISIBLE);
     }
 
 
@@ -182,6 +183,7 @@ public class PlanRiderActivity extends Activity implements View.OnClickListener 
                                         .show();
                                 //set buff to selected
                                 selected = buffKey;
+                                showDialogButton.setVisibility(View.VISIBLE);
                             }
                         }
                 )
