@@ -34,24 +34,25 @@ public class PlanRiderActivity extends Activity  {
     private static final String TAG = "DialogDemo";
     private Context mContext;
     ListView listView;
-    final CharSequence[] choiceList =
+    final String[] choiceList =
             {"Instrumenty", "Sprzęt" , "Akcesoria" };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plan_rider);
+       // setContentView(R.layout.activity_plan_rider);
         final Context context = getApplicationContext();
         mContext = this;
         boolean networkstate = Utilities.getConnectivityStatus(context);
+        int selected = showDialogButtonClick();
 
-        listView = (ListView) findViewById(R.id.listViewRaider);
         //listView.setVisibility(View.INVISIBLE);
         if (networkstate == true) {
 
             Toast.makeText(getApplicationContext(), "nawiazano połączenie", Toast.LENGTH_LONG).show();
-            int selected = showDialogButtonClick();
+
             //Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
             /*
+
 
             tutaj obsługa listy - zmienna selected zwraca indeks z tablicy choiceList
             zależnie co zostało zwrócone możemy zrobić tu obsługę dla odpowiedniej listy np.
@@ -67,6 +68,30 @@ public class PlanRiderActivity extends Activity  {
               a np różne dla item_selected
             }
              */
+            switch(choiceList[selected]) {
+                case "Instrumenty":
+                    setContentView(R.layout.activity_plan_rider);
+                    listView = (ListView) findViewById(R.id.listViewRaider);
+                    Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
+                    break;
+                case "Sprzęt":
+                    setContentView(R.layout.listviewstuff);
+                    listView = (ListView) findViewById(R.id.listViewStuff);
+                    Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
+                    break;
+                case "Akcesoria":
+
+                    Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    Toast.makeText( mContext,"brak ",Toast.LENGTH_SHORT).show();
+
+
+
+            }
+
+
+
 
 
 
@@ -77,8 +102,9 @@ public class PlanRiderActivity extends Activity  {
                     .setMessage("brak połączenia z siecią Internet")
                     .setNegativeButton("Ok", new AlertDialog.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            finish();
+
                             alertDialog.cancel();
+                            finish();
                         }
                     })
                     .create();
@@ -177,12 +203,7 @@ public class PlanRiderActivity extends Activity  {
                                                 int which) {
                                 Log.d(TAG,"Which value="+which);
                                 Log.d(TAG,"Selected value="+buffKey);
-                                Toast.makeText(
-                                        mContext,
-                                        "Select "+choiceList[buffKey],
-                                        Toast.LENGTH_SHORT
-                                )
-                                        .show();
+
                                 //set buff to selected
                                 selected = buffKey;
                                // listView.setVisibility(View.VISIBLE);
@@ -192,17 +213,11 @@ public class PlanRiderActivity extends Activity  {
 
                 )
                 .setNegativeButton("Anuluj",
-                        new DialogInterface.OnClickListener()
-                        {
+                        new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,
                                                 int which) {
-                                Toast.makeText(
-                                        mContext,
-                                        "Cancel click",
-                                        Toast.LENGTH_SHORT
-                                )
-                                        .show();
+
                             }
                         }
                 );

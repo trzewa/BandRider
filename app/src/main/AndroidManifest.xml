@@ -16,12 +16,11 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <supports-screens
-    android:smallScreens="true"
-    android:normalScreens="true"
-    android:largeScreens="true"
-    android:xlargeScreens="true"
-    android:anyDensity="false"
-    />
+        android:anyDensity="false"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
 
     <application
         android:name=".BandRiderApplication"
@@ -78,6 +77,10 @@
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about" >
+        </activity>
+        <activity
+            android:name=".ShowCategoriesActivity"
+            android:label="@string/title_activity_show_categories" >
         </activity>
     </application>
 
