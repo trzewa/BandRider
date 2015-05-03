@@ -39,15 +39,12 @@ public class PlanRiderActivity extends Activity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_plan_rider);
         final Context context = getApplicationContext();
         mContext = this;
+        final ArrayList<HashMap<String, String>> instrumentItems = new ArrayList<>();
         Intent intent = getIntent();
         int selected  = intent.getIntExtra(Constans.CATEGORY_SELECTED, 0);
         boolean networkstate = Utilities.getConnectivityStatus(context);
-        //int selected = showDialogButtonClick();
-
-        //listView.setVisibility(View.INVISIBLE);
         if (networkstate == true) {
 
             Toast.makeText(getApplicationContext(), "nawiazano połączenie", Toast.LENGTH_LONG).show();
@@ -67,9 +64,14 @@ public class PlanRiderActivity extends Activity  {
                                 {
                                     for(int i=0;i<instrumentList.size();i++)
                                     {
+                                        HashMap<String, String> map = new HashMap<>();
                                         ParseObject ob = instrumentList.get(i);
-                                        String instName = ob.getString("name");
-                                        Toast.makeText( mContext,instName,Toast.LENGTH_SHORT).show();
+                                        map.put("nazwa_inst", ob.getString("name"));
+                                        map.put("kategoria_inst", ob.getString("category"));
+                                        map.put("wlasciciel_inst", ob.getString("owner"));
+                                        map.put("status_inst", ob.getString("Switchstatus"));
+                                        instrumentItems.add(map);
+                                        Toast.makeText( mContext,map.get("nazwa_inst"),Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
