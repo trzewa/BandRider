@@ -42,6 +42,7 @@ public class PlanRiderActivity extends Activity  {
         final Context context = getApplicationContext();
         mContext = this;
         final ArrayList<HashMap<String, String>> instrumentItems = new ArrayList<>();
+        final ArrayList<HashMap<String, String>> stuffItems = new ArrayList<>();
         Intent intent = getIntent();
         int selected  = intent.getIntExtra(Constans.CATEGORY_SELECTED, 0);
         boolean networkstate = Utilities.getConnectivityStatus(context);
@@ -54,8 +55,8 @@ public class PlanRiderActivity extends Activity  {
                     setContentView(R.layout.activity_plan_rider);
                     listView = (ListView) findViewById(R.id.listViewRaider);
                     Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
-                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Instrument");
-                    query.findInBackground(new FindCallback<ParseObject>() {
+                    ParseQuery<ParseObject> queryInstruments = ParseQuery.getQuery("Instrument");
+                    queryInstruments.findInBackground(new FindCallback<ParseObject>() {
 
                         public void done(List<ParseObject> instrumentList, com.parse.ParseException e) {
                             if (e == null) {
@@ -83,19 +84,54 @@ public class PlanRiderActivity extends Activity  {
 
 
                     });
+                    /*
+                    obsługa adaptera listy instrumentów tutaj
+                     */
 
                     break;
                 case "Sprzęt":
                     setContentView(R.layout.listviewstuff);
                     listView = (ListView) findViewById(R.id.listViewStuff);
                     Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
+                    ParseQuery<ParseObject> queryStuff = ParseQuery.getQuery("Stuff");
+                    queryStuff.findInBackground(new FindCallback<ParseObject>() {
+
+                        public void done(List<ParseObject> stuffList, com.parse.ParseException e) {
+                            if (e == null) {
+                                Log.d("score", "Retrieved " + stuffList.size() );
+                                if(stuffList.size() > 0)
+                                {
+                                    for(int i=0;i<stuffList.size();i++)
+                                    {
+                                        HashMap<String, String> map = new HashMap<>();
+                                        ParseObject ob = stuffList.get(i);
+                                        map.put("nazwa_sprzet", ob.getString("name"));
+                                        map.put("kategoria_sprzet", ob.getString("category"));
+                                        map.put("wlasciciel_sprzet", ob.getString("owner"));
+                                        stuffItems.add(map);
+                                        Toast.makeText( mContext,map.get("nazwa_sprzet"),Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            } else {
+                                Log.d("score", "Error: " + e.getMessage());
+                            }
+                        }
+
+
+
+                    });
+
+                    /*
+                    obsługa adaptera listy tutaj
+                     */
                     break;
                 case "Akcesoria":
 
                     Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
                     break;
                 default:
-                    Toast.makeText( mContext,"brak ",Toast.LENGTH_SHORT).show();
+                    Toast.makeText( mContext,"brak danych - nieznana kategoria",Toast.LENGTH_SHORT).show();
 
 
 
