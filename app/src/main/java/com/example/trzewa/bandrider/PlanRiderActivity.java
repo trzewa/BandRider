@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,8 +43,10 @@ public class PlanRiderActivity extends Activity  {
        // setContentView(R.layout.activity_plan_rider);
         final Context context = getApplicationContext();
         mContext = this;
+        Intent intent = getIntent();
+        int selected  = intent.getIntExtra(Constans.CATEGORY_SELECTED, 0);
         boolean networkstate = Utilities.getConnectivityStatus(context);
-        int selected = showDialogButtonClick();
+        //int selected = showDialogButtonClick();
 
         //listView.setVisibility(View.INVISIBLE);
         if (networkstate == true) {

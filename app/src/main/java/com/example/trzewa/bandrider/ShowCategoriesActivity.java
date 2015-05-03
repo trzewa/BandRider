@@ -3,6 +3,7 @@ package com.example.trzewa.bandrider;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +13,7 @@ import android.view.MenuItem;
 
 public class ShowCategoriesActivity extends ActionBarActivity {
 
-    private AlertDialog alertDialog;
+
     private static final String TAG = "DialogDemo";
     private Context mContext;
     final String[] choiceList =
@@ -20,12 +21,15 @@ public class ShowCategoriesActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         setContentView(R.layout.activity_show_categories);
-        int selected = showDialogButtonClick();
+        showDialogButtonClick();
+
+
     }
     private int selected = 0;
     private int buffKey = 0; // add buffer value
-    private int showDialogButtonClick() {
+    private void showDialogButtonClick() {
         Log.i(TAG, "show Dialog ButtonClick");
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(mContext);
@@ -59,6 +63,9 @@ public class ShowCategoriesActivity extends ActionBarActivity {
 
                                 //set buff to selected
                                 selected = buffKey;
+                                Intent intent = new Intent(ShowCategoriesActivity.this, PlanRiderActivity.class);
+                                intent.putExtra(Constans.CATEGORY_SELECTED, selected);
+                                startActivity(intent);
                                 // listView.setVisibility(View.VISIBLE);
 
                             }
@@ -77,7 +84,6 @@ public class ShowCategoriesActivity extends ActionBarActivity {
 
         AlertDialog alert = builder.create();
         alert.show();
-        return selected;
     }
 
 

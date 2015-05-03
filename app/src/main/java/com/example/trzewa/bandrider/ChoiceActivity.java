@@ -46,7 +46,7 @@ public class ChoiceActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ChoiceActivity.this, PlanRiderActivity.class));
+                startActivity(new Intent(ChoiceActivity.this, ShowCategoriesActivity.class));
                 finish();
 
             }
