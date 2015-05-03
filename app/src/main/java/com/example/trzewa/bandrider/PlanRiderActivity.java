@@ -57,6 +57,31 @@ public class PlanRiderActivity extends Activity  {
                     setContentView(R.layout.activity_plan_rider);
                     listView = (ListView) findViewById(R.id.listViewRaider);
                     Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Instrument");
+                    query.findInBackground(new FindCallback<ParseObject>() {
+
+                        public void done(List<ParseObject> instrumentList, com.parse.ParseException e) {
+                            if (e == null) {
+                                Log.d("score", "Retrieved " + instrumentList.size() + "instrumentów");
+                                if(instrumentList.size() > 0)
+                                {
+                                    for(int i=0;i<instrumentList.size();i++)
+                                    {
+                                        ParseObject ob = instrumentList.get(i);
+                                        String instName = ob.getString("name");
+                                        Toast.makeText( mContext,instName,Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            } else {
+                                Log.d("score", "Error: " + e.getMessage());
+                            }
+                        }
+
+
+
+                    });
+
                     break;
                 case "Sprzęt":
                     setContentView(R.layout.listviewstuff);
