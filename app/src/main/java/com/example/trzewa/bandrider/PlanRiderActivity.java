@@ -36,8 +36,6 @@ public class PlanRiderActivity extends ListActivity {
     private AlertDialog alertDialog;
     private static final String TAG = "DialogDemo";
     private Context mContext;
-    ListView listView;
-    ListView listView2;
     final String[] choiceList =
             {"Instrumenty", "Sprzęt" , "Akcesoria" };
 
@@ -96,9 +94,7 @@ public class PlanRiderActivity extends ListActivity {
                             R.id.nazwa, R.id.wlasciciel});
 
                     setListAdapter(adapter);
-                    /*
-                    obsługa adaptera listy instrumentów tutaj
-                     */
+
 
                     break;
                 case "Sprzęt":
@@ -141,9 +137,6 @@ public class PlanRiderActivity extends ListActivity {
                     setListAdapter(adapter_stuff);
 
 
-                    /*
-                    obsługa adaptera listy tutaj
-                     */
                     break;
                 case "Akcesoria":
 
@@ -151,6 +144,8 @@ public class PlanRiderActivity extends ListActivity {
                     break;
                 default:
                     Toast.makeText( mContext,"brak danych - nieznana kategoria",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(PlanRiderActivity.this, ShowCategoriesActivity.class));
+                    finish();
 
 
 
