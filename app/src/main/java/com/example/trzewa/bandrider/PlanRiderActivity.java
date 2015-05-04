@@ -2,6 +2,7 @@ package com.example.trzewa.bandrider;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,7 +15,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -29,13 +32,15 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class PlanRiderActivity extends Activity  {
+public class PlanRiderActivity extends ListActivity {
     private AlertDialog alertDialog;
     private static final String TAG = "DialogDemo";
     private Context mContext;
     ListView listView;
+    ListView listView2;
     final String[] choiceList =
             {"Instrumenty", "Sprzęt" , "Akcesoria" };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +57,7 @@ public class PlanRiderActivity extends Activity  {
 
             switch(choiceList[selected]) {
                 case "Instrumenty":
-                    setContentView(R.layout.activity_plan_rider);
-                    listView = (ListView) findViewById(R.id.listViewRaider);
+
                     Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
                     ParseQuery<ParseObject> queryInstruments = ParseQuery.getQuery("Instrument");
                     queryInstruments.findInBackground(new FindCallback<ParseObject>() {
@@ -84,14 +88,21 @@ public class PlanRiderActivity extends Activity  {
 
 
                     });
+                    setContentView(R.layout.activity_plan_rider);
+                    listView = (ListView) findViewById(R.id.listInstrument);
+                    ListAdapter adapter = new SimpleAdapter(this, instrumentItems,
+                            R.layout.item,
+                            new String[]{"nazwa_inst", "wlasciciel_inst"}, new int[]{
+                            R.id.nazwa, R.id.wlasciciel});
+
+                    listView.setAdapter(adapter);
                     /*
                     obsługa adaptera listy instrumentów tutaj
                      */
 
                     break;
                 case "Sprzęt":
-                    setContentView(R.layout.listviewstuff);
-                    listView = (ListView) findViewById(R.id.listViewStuff);
+
                     Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
                     ParseQuery<ParseObject> queryStuff = ParseQuery.getQuery("Stuff");
                     queryStuff.findInBackground(new FindCallback<ParseObject>() {
@@ -121,6 +132,15 @@ public class PlanRiderActivity extends Activity  {
 
 
                     });
+                    setContentView(R.layout.listviewstuff);
+                    listView2 = (ListView) findViewById(R.id.listview);
+                    ListAdapter adapter_stuff = new SimpleAdapter(this, stuffItems,
+                           R.layout.item,
+                            new String[]{"nazwa_sprzet", "wlasciciel_sprzet"}, new int[]{
+                            R.id.nazwa, R.id.wlasciciel});
+
+                    listView2.setAdapter(adapter_stuff);
+
 
                     /*
                     obsługa adaptera listy tutaj
