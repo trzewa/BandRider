@@ -89,13 +89,13 @@ public class PlanRiderActivity extends ListActivity {
 
                     });
                     setContentView(R.layout.activity_plan_rider);
-                    listView = (ListView) findViewById(R.id.listInstrument);
+                    //stView = (ListView) findViewById(R.id.list);
                     ListAdapter adapter = new SimpleAdapter(this, instrumentItems,
                             R.layout.item,
                             new String[]{"nazwa_inst", "wlasciciel_inst"}, new int[]{
                             R.id.nazwa, R.id.wlasciciel});
 
-                    listView.setAdapter(adapter);
+                    setListAdapter(adapter);
                     /*
                     obsługa adaptera listy instrumentów tutaj
                      */
@@ -133,13 +133,12 @@ public class PlanRiderActivity extends ListActivity {
 
                     });
                     setContentView(R.layout.listviewstuff);
-                    listView2 = (ListView) findViewById(R.id.listview);
                     ListAdapter adapter_stuff = new SimpleAdapter(this, stuffItems,
                            R.layout.item,
                             new String[]{"nazwa_sprzet", "wlasciciel_sprzet"}, new int[]{
                             R.id.nazwa, R.id.wlasciciel});
 
-                    listView2.setAdapter(adapter_stuff);
+                    setListAdapter(adapter_stuff);
 
 
                     /*
