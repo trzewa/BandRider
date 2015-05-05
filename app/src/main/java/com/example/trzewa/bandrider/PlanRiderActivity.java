@@ -139,6 +139,7 @@ public class PlanRiderActivity extends ListActivity {
 
                     break;
                 case "Akcesoria":
+                    setContentView(R.layout.listviewaccesories);
 
                     Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
                     break;
