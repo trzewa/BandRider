@@ -115,7 +115,7 @@ public class PlanRiderActivity extends ListActivity {
                             builder.setItems(colors, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // the user clicked on colors[which]
+                                    // obsługa kliknięcia
                                 }
                             });
                             builder.show();
