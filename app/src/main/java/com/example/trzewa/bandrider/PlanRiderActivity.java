@@ -73,8 +73,11 @@ public class PlanRiderActivity extends ListActivity {
                                         map.put("kategoria_inst", ob.getString("category"));
                                         map.put("wlasciciel_inst", ob.getString("owner"));
                                         map.put("status_inst", ob.getString("Switchstatus"));
+                                        if(map.get("status_inst").equals("dostępny"))
+                                        {
                                         instrumentItems.add(map);
                                         Toast.makeText( mContext,map.get("nazwa_inst"),Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }
 
