@@ -26,12 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ratingBar"
-                />
-
             <TextView
             android:layout_width="139dp"
             android:layout_height="match_parent"

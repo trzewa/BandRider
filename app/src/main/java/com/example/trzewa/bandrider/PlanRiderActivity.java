@@ -19,12 +19,16 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -38,6 +42,7 @@ public class PlanRiderActivity extends ListActivity {
     private Context mContext;
     final String[] choiceList =
             {"Instrumenty", "Sprzęt" , "Akcesoria" };
+    ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +78,7 @@ public class PlanRiderActivity extends ListActivity {
                                         map.put("kategoria_inst", ob.getString("category"));
                                         map.put("wlasciciel_inst", ob.getString("owner"));
                                         map.put("status_inst", ob.getString("Switchstatus"));
-                                        if(map.get("status_inst").equals("dostępny"))
+                                        if((!ob.getString("Switchstatus").isEmpty()) && ob.getString("Switchstatus").equals("dostępny"))
                                         {
                                         instrumentItems.add(map);
                                         Toast.makeText( mContext,map.get("nazwa_inst"),Toast.LENGTH_SHORT).show();
@@ -90,13 +95,33 @@ public class PlanRiderActivity extends ListActivity {
 
                     });
                     setContentView(R.layout.activity_plan_rider);
-                    //stView = (ListView) findViewById(R.id.list);
+                    //liststView = (ListView) findViewById(R.id.list);
                     ListAdapter adapter = new SimpleAdapter(this, instrumentItems,
                             R.layout.item,
                             new String[]{"nazwa_inst", "wlasciciel_inst"}, new int[]{
                             R.id.nazwa, R.id.wlasciciel});
 
                     setListAdapter(adapter);
+                    ListView w = getListView();
+                    w.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view,
+                                                int position, long id) {
+                            CharSequence colors[] = new CharSequence[]{"wypożycz", "zobacz info"};
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(PlanRiderActivity.this);
+                            builder.setTitle("Co chcesz zrobić?");
+                            builder.setItems(colors, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // the user clicked on colors[which]
+                                }
+                            });
+                            builder.show();
+
+                        }
+                    });
 
 
                     break;
