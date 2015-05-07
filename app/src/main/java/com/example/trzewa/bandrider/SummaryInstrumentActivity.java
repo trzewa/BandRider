@@ -2,6 +2,7 @@ package com.example.trzewa.bandrider;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -53,6 +54,9 @@ public class SummaryInstrumentActivity extends ActionBarActivity {
                                 Instrument.put(Constans.INST_CATEGORY, inst_category);
                                 Instrument.put(Constans.INS_SWITCH_STATUS, inst_status);
                                 Instrument.saveInBackground();
+                                Intent Intent = new Intent(getApplicationContext(), ChoiceActivity.class);
+                                Intent.putExtra("dane","Instrument Zapisany");
+                                startActivity(Intent);
                             }
                         })
                         .setNeutralButton("Cofnij", new AlertDialog.OnClickListener() {

@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class ChoiceActivity extends ActionBarActivity {
     Button AddInstrumentButton;
@@ -23,6 +24,17 @@ public class ChoiceActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
+        //Wyœwietla informacje o zapisaniu Instrumentu lub sprzêtu
+        Intent i = getIntent();
+        if (i.hasExtra("dane"))
+        {
+            Bundle przekazanedane = i.getExtras();
+            String przekazanytekst = przekazanedane.getString("dane");
+            Toast.makeText(ChoiceActivity.this, przekazanytekst, Toast.LENGTH_SHORT).show();
+        }
+
+
+
         //mCurrentUser = ParseUser.getCurrentUser();
         if (ParseUser.getCurrentUser() == null) {
             //Intent intent = new Intent(this, LoginActivity.class);
@@ -30,6 +42,7 @@ public class ChoiceActivity extends ActionBarActivity {
             goToLogin();
 
         }
+
         setContentView(R.layout.activity_choice);
         AddInstrumentButton = (Button) findViewById(R.id.buttonAdd);
         AddInstrumentButton.setOnClickListener(new View.OnClickListener() {
