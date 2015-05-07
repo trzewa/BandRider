@@ -72,6 +72,7 @@ public class EditionActivity extends ListActivity {
                                         if((!ob.getString("Switchstatus").isEmpty()) && ob.getString("Switchstatus").equals("dostêpny"))
                                         {
 
+
                                         }
                                     }
                                 }
