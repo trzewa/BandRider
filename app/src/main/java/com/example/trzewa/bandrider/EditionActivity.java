@@ -1,6 +1,5 @@
 package com.example.trzewa.bandrider;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -12,62 +11,52 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 
-public class PlanRiderActivity extends ListActivity {
+public class EditionActivity extends ListActivity {
     private AlertDialog alertDialog;
-    private static final String TAG = "DialogDemo";
     private Context mContext;
-    final String[] choiceList =
-            {"Instrumenty", "SprzÄ™t" , "Akcesoria" };
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final Context context = getApplicationContext();
+         final Context context = getApplicationContext();
         mContext = this;
         final ArrayList<HashMap<String, String>> instrumentItems = new ArrayList<>();
         final ArrayList<HashMap<String, String>> stuffItems = new ArrayList<>();
         Intent intent = getIntent();
         int selected  = intent.getIntExtra(Constans.CATEGORY_SELECTED, 0);
         boolean networkstate = Utilities.getConnectivityStatus(context);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String user_name = currentUser.getUsername();
         if (networkstate) {
 
-            Toast.makeText(getApplicationContext(), "nawiazano poÅ‚Ä…czenie", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "nawiazano po³¹czenie", Toast.LENGTH_LONG).show();
 
-            switch(choiceList[selected]) {
+            switch(Constans.choiceList[selected]) {
                 case "Instrumenty":
 
-                    Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
+                    Toast.makeText( mContext,"Select aaaa "+Constans.choiceList[selected],Toast.LENGTH_SHORT).show();
                     ParseQuery<ParseObject> queryInstruments = ParseQuery.getQuery("Instrument");
+                    queryInstruments.whereEqualTo("owner", user_name );
                     queryInstruments.findInBackground(new FindCallback<ParseObject>() {
 
                         public void done(List<ParseObject> instrumentList, com.parse.ParseException e) {
                             if (e == null) {
-                                Log.d("score", "Retrieved " + instrumentList.size() + "instrumentÃ³w");
+                                Log.d("score", "Retrieved " + instrumentList.size() + "instrumentów");
                                 if(instrumentList.size() > 0)
                                 {
                                     for(int i=0;i<instrumentList.size();i++)
@@ -78,10 +67,11 @@ public class PlanRiderActivity extends ListActivity {
                                         map.put("kategoria_inst", ob.getString("category"));
                                         map.put("wlasciciel_inst", ob.getString("owner"));
                                         map.put("status_inst", ob.getString("Switchstatus"));
-                                        if((!ob.getString("Switchstatus").isEmpty()) && ob.getString("Switchstatus").equals("dostÄ™pny"))
-                                        {
                                         instrumentItems.add(map);
                                         Toast.makeText( mContext,map.get("nazwa_inst"),Toast.LENGTH_SHORT).show();
+                                        if((!ob.getString("Switchstatus").isEmpty()) && ob.getString("Switchstatus").equals("dostêpny"))
+                                        {
+
                                         }
                                     }
                                 }
@@ -103,19 +93,19 @@ public class PlanRiderActivity extends ListActivity {
 
                     setListAdapter(adapter);
                     ListView w = getListView();
-                    w.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                 /*   w.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view,
                                                 int position, long id) {
-                            CharSequence colors[] = new CharSequence[]{"wypoÅ¼ycz", "zobacz info"};
+                            CharSequence colors[] = new CharSequence[]{"wypo¿ycz", "zobacz info"};
 
-                            AlertDialog.Builder builder = new AlertDialog.Builder(PlanRiderActivity.this);
-                            builder.setTitle("Co chcesz zrobiÄ‡?");
+                            AlertDialog.Builder builder = new AlertDialog.Builder(EditionActivity.this);
+                            builder.setTitle("Co chcesz zrobiæ?");
                             builder.setItems(colors, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // obsÅ‚uga klikniÄ™cia
+                                    // obs³uga klikniêcia
                                 }
                             });
                             builder.show();
@@ -123,11 +113,12 @@ public class PlanRiderActivity extends ListActivity {
                         }
                     });
 
-
+*/
                     break;
-                case "SprzÄ™t":
+                /*
+              case "Sprzêt":
 
-                    Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
+                    Toast.makeText( mContext,"Select aaaa "+Constans.choiceList[selected],Toast.LENGTH_SHORT).show();
                     ParseQuery<ParseObject> queryStuff = ParseQuery.getQuery("Stuff");
                     queryStuff.findInBackground(new FindCallback<ParseObject>() {
 
@@ -158,7 +149,7 @@ public class PlanRiderActivity extends ListActivity {
                     });
                     setContentView(R.layout.listviewstuff);
                     ListAdapter adapter_stuff = new SimpleAdapter(this, stuffItems,
-                           R.layout.item,
+                            R.layout.item,
                             new String[]{"nazwa_sprzet", "wlasciciel_sprzet"}, new int[]{
                             R.id.nazwa, R.id.wlasciciel});
 
@@ -169,11 +160,12 @@ public class PlanRiderActivity extends ListActivity {
                 case "Akcesoria":
                     setContentView(R.layout.listviewaccesories);
 
-                    Toast.makeText( mContext,"Select aaaa "+choiceList[selected],Toast.LENGTH_SHORT).show();
+                    Toast.makeText( mContext,"Select aaaa "+Constans.choiceList[selected],Toast.LENGTH_SHORT).show();
                     break;
+*/
                 default:
                     Toast.makeText( mContext,"brak danych - nieznana kategoria",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(PlanRiderActivity.this, ShowCategoriesActivity.class));
+                    startActivity(new Intent(EditionActivity.this, ShowCategoriesActivity.class));
                     finish();
 
 
@@ -181,9 +173,9 @@ public class PlanRiderActivity extends ListActivity {
             }
 
         } else {
-            alertDialog = new AlertDialog.Builder(PlanRiderActivity.this)
+            alertDialog = new AlertDialog.Builder(EditionActivity.this)
                     .setTitle("Brak Internetu")
-                    .setMessage("brak poÅ‚Ä…czenia z sieciÄ… Internet")
+                    .setMessage("brak po³¹czenia z sieci¹ Internet")
                     .setNegativeButton("Ok", new AlertDialog.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -197,12 +189,12 @@ public class PlanRiderActivity extends ListActivity {
 
         }
 
-    }
+         }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_plan_rider, menu);
+        getMenuInflater().inflate(R.menu.menu_edition_list, menu);
         return true;
     }
 

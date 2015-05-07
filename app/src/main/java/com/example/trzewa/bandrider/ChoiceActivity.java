@@ -64,7 +64,18 @@ public class ChoiceActivity extends ActionBarActivity {
 
             }
         });
-    }
+
+        edit_deleteButton = (Button) findViewById(R.id.buttonEdit);
+        edit_deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(ChoiceActivity.this, EditionActivity.class));
+                finish();
+
+            }
+        });
+     }
 
     private void goToLogin() {
         LoginActivity.startLogInActivity(this);

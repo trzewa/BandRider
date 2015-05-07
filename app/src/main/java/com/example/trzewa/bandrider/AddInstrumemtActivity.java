@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +16,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
@@ -27,8 +27,8 @@ public class AddInstrumemtActivity extends Activity {
     private Button ReturnButton;
     private Switch Switch;
     private String switchStatus;
-
-
+    private Button PhotoButton;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class AddInstrumemtActivity extends Activity {
         editor.putString(Constans.INS_SWITCH_STATUS, "dostępny");//zainicjuje, że przedmiot jest dostępny, jezeli nie zostanie zmieniona opcja dostępności
       //  editor.putString(Constans.INST_CATEGORY, "strunowe");//zainicjuje jego kategorie na strunowe
         editor.commit();
+        PhotoButton = (Button) findViewById(R.id.buttonPhoto);
         NextButton = (Button) findViewById(R.id.ToInstSummary);
         ReturnButton = (Button) findViewById(R.id.Returnnp);
         Switch = (Switch) findViewById(R.id.switch1);
@@ -71,6 +72,23 @@ public class AddInstrumemtActivity extends Activity {
 
             }
         });
+
+        PhotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+
+                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                    }
+
+
+            }
+        });
+
         Switch.setChecked(true);
         Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 

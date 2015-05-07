@@ -20,4 +20,6 @@ public class Constans {
     public static final String INS_SWITCH_STATUS = "Switchstatus";
     public static final String[] ELEMENTY = {"strunowe", "dęte", "perkusyjne"};
     public static final String[] ELEMENTY2 = {"wzmacniacz", "mikrofon", "głośnik"};
+    public static final String[] choiceList = {"Instrumenty", "Sprzęt" , "Akcesoria" };
+
 }
