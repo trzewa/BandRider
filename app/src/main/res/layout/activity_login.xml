@@ -30,7 +30,8 @@
         android:layout_toRightOf="@+id/textView2"
         android:ems="10"
         android:textColor="#ff000000"
-        android:background="#ffffffff">
+        android:background="#ffffffff"
+        android:inputType="text">
 
         <requestFocus />
     </EditText>
@@ -57,7 +58,8 @@
         android:textColor="#ff000000"
         android:password="true"
         android:enabled="true"
-        android:background="#ffffffff" />
+        android:background="#ffffffff"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/buttonLogin"
