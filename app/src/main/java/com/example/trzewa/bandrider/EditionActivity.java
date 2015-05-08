@@ -4,21 +4,23 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
 import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +28,7 @@ import java.util.List;
 
 public class EditionActivity extends ListActivity {
     private AlertDialog alertDialog;
-    private Context mContext;
+   // private Context mContext;
 
 
 
@@ -34,47 +36,41 @@ public class EditionActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          final Context context = getApplicationContext();
-        mContext = this;
+      //  mContext = this;
         final ArrayList<HashMap<String, String>> instrumentItems = new ArrayList<>();
-        final ArrayList<HashMap<String, String>> stuffItems = new ArrayList<>();
-        Intent intent = getIntent();
-        int selected  = intent.getIntExtra(Constans.CATEGORY_SELECTED, 0);
+        //final ArrayList<HashMap<String, String>> stuffItems = new ArrayList<>();
+        //Intent intent = getIntent();
+        //int selected  = intent.getIntExtra(Constans.CATEGORY_SELECTED, 0);
         boolean networkstate = Utilities.getConnectivityStatus(context);
         ParseUser currentUser = ParseUser.getCurrentUser();
         String user_name = currentUser.getUsername();
         if (networkstate) {
 
-            Toast.makeText(getApplicationContext(), "nawiazano po³¹czenie", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "nawiazano poÅ‚Ä…czenie", Toast.LENGTH_LONG).show();
 
-            switch(Constans.choiceList[selected]) {
-                case "Instrumenty":
 
-                    Toast.makeText( mContext,"Select aaaa "+Constans.choiceList[selected],Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText( getApplicationContext(),"Select ",Toast.LENGTH_SHORT).show();
                     ParseQuery<ParseObject> queryInstruments = ParseQuery.getQuery("Instrument");
-                    queryInstruments.whereEqualTo("owner", user_name );
+                    queryInstruments.whereEqualTo("owner", user_name);
                     queryInstruments.findInBackground(new FindCallback<ParseObject>() {
 
                         public void done(List<ParseObject> instrumentList, com.parse.ParseException e) {
                             if (e == null) {
-                                Log.d("score", "Retrieved " + instrumentList.size() + "instrumentów");
-                                if(instrumentList.size() > 0)
-                                {
-                                    for(int i=0;i<instrumentList.size();i++)
-                                    {
+                                Log.d("score", "Retrieved " + instrumentList.size() + "instrumentÃ³w");
+                                if (instrumentList.size() > 0) {
+
+                                    for (int i = 0; i < instrumentList.size(); i++) {
                                         HashMap<String, String> map = new HashMap<>();
                                         ParseObject ob = instrumentList.get(i);
                                         map.put("nazwa_inst", ob.getString("name"));
                                         map.put("kategoria_inst", ob.getString("category"));
                                         map.put("wlasciciel_inst", ob.getString("owner"));
                                         map.put("status_inst", ob.getString("Switchstatus"));
+                                        map.put("objectId",ob.getObjectId());
                                         instrumentItems.add(map);
-                                        Toast.makeText( mContext,map.get("nazwa_inst"),Toast.LENGTH_SHORT).show();
-                                        if((!ob.getString("Switchstatus").isEmpty()) && ob.getString("Switchstatus").equals("dostêpny"))
-                                        {
-
-
-                                        }
                                     }
+                                    Toast.makeText(getApplicationContext(), "Liczba" + instrumentItems.size(), Toast.LENGTH_SHORT).show();
                                 }
 
                             } else {
@@ -83,30 +79,36 @@ public class EditionActivity extends ListActivity {
                         }
 
 
-
                     });
-                    setContentView(R.layout.activity_plan_rider);
 
-                    ListAdapter adapter = new SimpleAdapter(this, instrumentItems,
-                            R.layout.item,
-                            new String[]{"nazwa_inst", "wlasciciel_inst"}, new int[]{
-                            R.id.nazwa, R.id.wlasciciel});
+                    ListAdapter adapter = new SimpleAdapter(getApplicationContext(), instrumentItems,
+                            R.layout.activity_edit_item,
+                            new String[]{"nazwa_inst", "wlasciciel_inst","objectId"}, new int[]{
+                            R.id.nazwaEditItem, R.id.wlascicielEditItem,R.id.objectID});
 
                     setListAdapter(adapter);
-                    ListView w = getListView();
-                 /*   w.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                      ListView w = getListView();
+                   w.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view,
                                                 int position, long id) {
-                            CharSequence colors[] = new CharSequence[]{"wypo¿ycz", "zobacz info"};
+                            CharSequence colors[] = new CharSequence[]{"UsuÅ„", "Edytuj"};
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(EditionActivity.this);
-                            builder.setTitle("Co chcesz zrobiæ?");
+                            builder.setTitle("Co chcesz zrobiÄ‡?");
                             builder.setItems(colors, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // obs³uga klikniêcia
+                                    // obsÅ‚uga klikniÄ™cia
+                                    switch (which)
+                                    {
+                                        case 0:
+                                            Toast.makeText(getApplicationContext(), "PPP", Toast.LENGTH_SHORT).show();
+
+                                            break;
+                                    }
                                 }
                             });
                             builder.show();
@@ -114,10 +116,10 @@ public class EditionActivity extends ListActivity {
                         }
                     });
 
-*/
-                    break;
+
+
                 /*
-              case "Sprzêt":
+              case "SprzÄ™t":
 
                     Toast.makeText( mContext,"Select aaaa "+Constans.choiceList[selected],Toast.LENGTH_SHORT).show();
                     ParseQuery<ParseObject> queryStuff = ParseQuery.getQuery("Stuff");
@@ -164,19 +166,15 @@ public class EditionActivity extends ListActivity {
                     Toast.makeText( mContext,"Select aaaa "+Constans.choiceList[selected],Toast.LENGTH_SHORT).show();
                     break;
 */
-                default:
-                    Toast.makeText( mContext,"brak danych - nieznana kategoria",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(EditionActivity.this, ShowCategoriesActivity.class));
-                    finish();
 
 
 
-            }
+
 
         } else {
             alertDialog = new AlertDialog.Builder(EditionActivity.this)
                     .setTitle("Brak Internetu")
-                    .setMessage("brak po³¹czenia z sieci¹ Internet")
+                    .setMessage("brak poÅ‚Ä…czenia z sieciÄ… Internet")
                     .setNegativeButton("Ok", new AlertDialog.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -195,7 +193,7 @@ public class EditionActivity extends ListActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_edition_list, menu);
+        getMenuInflater().inflate(R.menu.menu_plan_rider, menu);
         return true;
     }
 

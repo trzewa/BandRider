@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/TextAppearance"
+        android:background="#fffffdbf"
+        android:backgroundTint="@android:color/white">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/nazwaEditItem"
+            android:textColor="#dc6800"
+            android:layout_gravity="center_horizontal" />
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="139dp"
+                android:layout_height="match_parent"
+                android:text="New Text"
+                android:id="@+id/wlascicielEditItem"
+                android:layout_gravity="right"
+                android:textColor="#ff1d58ff" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="objectID"
+                android:id="@+id/objectID"
+                android:textColor="#ff354fff" />
+
+        </TableRow>
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
