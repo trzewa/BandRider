@@ -15,10 +15,16 @@
         android:backgroundTint="@android:color/white">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nazwa"
+            android:id="@+id/textView13" />
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="30dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/nazwaEditItem"
+            android:id="@+id/textViewNameItem"
             android:textColor="#dc6800"
             android:layout_gravity="center_horizontal" />
 
@@ -27,23 +33,110 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Właściciel                   "
+                android:id="@+id/textView12" />
+
+            <TextView
                 android:layout_width="139dp"
                 android:layout_height="match_parent"
-                android:text="New Text"
-                android:id="@+id/wlascicielEditItem"
+                android:id="@+id/textViewOwner"
                 android:layout_gravity="right"
                 android:textColor="#ff1d58ff" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="ID             "
+                android:id="@+id/textView14" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="objectID"
-                android:id="@+id/objectID"
-                android:textColor="#ff354fff" />
+                android:id="@+id/textVievObjectID"
+                android:textColor="#ff354fff"
+                android:layout_gravity="right" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Stworzony"
+                android:id="@+id/textView15" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewCreated"
+                android:textColor="#ff354fff"
+                android:layout_gravity="right" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Zmodyfikowany ostatnio"
+                android:id="@+id/textView16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewUpdate"
+                android:textColor="#ff354fff"
+                android:layout_gravity="right" />
 
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Dostępny"
+                android:id="@+id/textViewaaa" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAvailable"
+                android:textColor="#ff354fff"
+                android:layout_gravity="right" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Kategoria"
+                android:id="@+id/textView1111" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewCategory"
+                android:textColor="#ff354fff"
+                android:layout_gravity="right" />
+        </TableRow>
 
 
     </LinearLayout>
