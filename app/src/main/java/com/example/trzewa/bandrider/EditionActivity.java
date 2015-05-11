@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,12 +16,15 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
+import com.parse.*;
+//import com.parse.DeleteCallback;
+//import com.parse.FindCallback;
+//import com.parse.ParseObject;
+//import com.parse.ParseQuery;
+//import com.parse.ParseUser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,8 +35,7 @@ import java.util.List;
 public class EditionActivity extends ListActivity {
     private AlertDialog alertDialog;
    // private Context mContext;
-
-
+   // private String a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +103,7 @@ public class EditionActivity extends ListActivity {
                 w.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view,
+                    public void onItemClick(AdapterView<?> parent, final View view,
                                             int position, long id) {
                         CharSequence colors[] = new CharSequence[]{"Usuń", "Edytuj"};
 
@@ -112,16 +115,44 @@ public class EditionActivity extends ListActivity {
                                 // obsługa kliknięcia
                                 switch (which) {
                                     case 0:
-                                        Toast.makeText(getApplicationContext(), "PPP", Toast.LENGTH_SHORT).show();
+                                        TextView aa = (TextView) view.findViewById(R.id.textVievObjectID);
+                                        String value = aa.getText().toString();
+                                        //
 
-                                        break;
+
+                                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Instrument");
+                                        query.getInBackground(value, new GetCallback<ParseObject>() {
+                                            @Override
+                                            public void done(ParseObject parseObject, ParseException e) {
+                                                parseObject.deleteInBackground();
+                                                if (e == null) {
+                                                    Toast.makeText(getApplicationContext(), "Usunięto pomyślnie", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(EditionActivity.this, EditionActivity.class));
+                                                    finish();
+
+
+                                                } else {
+                                                    Toast.makeText(getApplicationContext(), "Wystąpił błąd podczas usuwania", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+
+                                        });
+
+                                                break;
+
+                                    case 1:
+
+
+                                                break;
+                                            }
+                                        }
                                 }
-                            }
-                        });
-                        builder.show();
 
-                    }
-                });
+                                            );
+                                            builder.show();
+
+                                        }
+                                });
 
 
 
@@ -177,48 +208,52 @@ public class EditionActivity extends ListActivity {
 */
 
 
-            } else {
-                alertDialog = new AlertDialog.Builder(EditionActivity.this)
-                        .setTitle("Brak Internetu")
-                        .setMessage("brak połączenia z siecią Internet")
-                        .setNegativeButton("Ok", new AlertDialog.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                alertDialog.cancel();
-                                finish();
                             }
-                        })
-                        .create();
-                alertDialog.show();
+
+                            else
+
+                            {
+                                alertDialog = new AlertDialog.Builder(EditionActivity.this)
+                                        .setTitle("Brak Internetu")
+                                        .setMessage("brak połączenia z siecią Internet")
+                                        .setNegativeButton("Ok", new AlertDialog.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                alertDialog.cancel();
+                                                finish();
+                                            }
+                                        })
+                                        .create();
+                                alertDialog.show();
 
 
-            }
-        }
-        catch (Exception e )
-        {
+                            }
+                        }
+                        catch(Exception e)
+                        {
 
-        }
-         }
+                        }
+                    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_plan_rider, menu);
-        return true;
-    }
+                    @Override
+                    public boolean onCreateOptionsMenu(Menu menu) {
+                        // Inflate the menu; this adds items to the action bar if it is present.
+                        getMenuInflater().inflate(R.menu.menu_plan_rider, menu);
+                        return true;
+                    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+                    @Override
+                    public boolean onOptionsItemSelected(MenuItem item) {
+                        // Handle action bar item clicks here. The action bar will
+                        // automatically handle clicks on the Home/Up button, so long
+                        // as you specify a parent activity in AndroidManifest.xml.
+                        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+                        //noinspection SimplifiableIfStatement
+                        if (id == R.id.action_settings) {
+                            return true;
+                        }
 
-        return super.onOptionsItemSelected(item);
-    }
-}
+                        return super.onOptionsItemSelected(item);
+                    }
+                }
