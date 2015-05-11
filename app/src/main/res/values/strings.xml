@@ -18,5 +18,6 @@
     <string name="title_activity_about">AboutActivity</string>
     <string name="about">O programie</string>
     <string name="title_activity_show_categories">ShowCategoriesActivity</string>
+    <string name="title_activity_change_item">Edycja</string>
 
 </resources>

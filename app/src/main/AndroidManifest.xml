@@ -14,7 +14,10 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <supports-screens
         android:anyDensity="false"
@@ -86,6 +89,10 @@
         <activity
             android:name=".ShowCategoriesActivity"
             android:label="@string/title_activity_show_categories" >
+        </activity>
+        <activity
+            android:name=".ChangeItem"
+            android:label="@string/title_activity_change_item" >
         </activity>
     </application>
 

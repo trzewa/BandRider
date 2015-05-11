@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
@@ -18,15 +17,13 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
-import com.parse.*;
-//import com.parse.DeleteCallback;
-//import com.parse.FindCallback;
-//import com.parse.ParseObject;
-//import com.parse.ParseQuery;
-//import com.parse.ParseUser;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,8 +31,7 @@ import java.util.List;
 
 public class EditionActivity extends ListActivity {
     private AlertDialog alertDialog;
-   // private Context mContext;
-   // private String a;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,16 +108,15 @@ public class EditionActivity extends ListActivity {
                         builder.setItems(colors, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // obsługa kliknięcia
+                                TextView objectIdItem = (TextView) view.findViewById(R.id.textVievObjectID);
+                                String valueObjectIdItem = objectIdItem.getText().toString();
                                 switch (which) {
                                     case 0:
-                                        TextView aa = (TextView) view.findViewById(R.id.textVievObjectID);
-                                        String value = aa.getText().toString();
-                                        //
 
+                                        // obsługa kliknięcia
 
                                         ParseQuery<ParseObject> query = ParseQuery.getQuery("Instrument");
-                                        query.getInBackground(value, new GetCallback<ParseObject>() {
+                                        query.getInBackground(valueObjectIdItem, new GetCallback<ParseObject>() {
                                             @Override
                                             public void done(ParseObject parseObject, ParseException e) {
                                                 parseObject.deleteInBackground();
@@ -141,6 +136,13 @@ public class EditionActivity extends ListActivity {
                                                 break;
 
                                     case 1:
+
+                                        // Definiujemy cel
+                                        Intent cel = new Intent(getApplicationContext(), ChangeItem.class);
+                                        // Towrzymy Bundle od razu dodając informacje do Intentu
+                                        cel.putExtra("objectId", valueObjectIdItem);
+                                        // Wysyłamy
+                                        startActivity(cel);
 
 
                                                 break;

@@ -44,7 +44,6 @@ public class AddInstrumemtActivity extends Activity {
         String user_name = currentUser.getUsername();
         instowner.setText(user_name);
         editor.putString(Constans.INS_SWITCH_STATUS, "dostępny");//zainicjuje, że przedmiot jest dostępny, jezeli nie zostanie zmieniona opcja dostępności
-      //  editor.putString(Constans.INST_CATEGORY, "strunowe");//zainicjuje jego kategorie na strunowe
         editor.commit();
         PhotoButton = (Button) findViewById(R.id.buttonPhoto);
         NextButton = (Button) findViewById(R.id.ToInstSummary);

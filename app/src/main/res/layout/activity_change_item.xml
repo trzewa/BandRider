@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        style="@android:style/TextAppearance"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#fffffdbf"
+        android:backgroundTint="@android:color/white" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nazwa"
+            android:id="@+id/textView19" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/editViewChangeItemName"
+            android:textColor="#dc6800"
+            android:layout_gravity="center_horizontal" />
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Właściciel                   "
+                android:id="@+id/textView21" />
+
+            <TextView
+                android:layout_width="139dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textViewChangeItemOwner"
+                android:layout_gravity="right"
+                android:textColor="#ff1d58ff" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="ID             "
+                android:id="@+id/textView23" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewChangeItemId"
+                android:textColor="#ff354fff"
+                android:layout_gravity="right" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Stworzony"
+                android:id="@+id/textView25" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewChangeItemCreated"
+                android:textColor="#ff354fff"
+                android:layout_gravity="right" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Zmodyfikowany ostatnio"
+                android:id="@+id/textView27" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewChangeItemUpdate"
+                android:textColor="#ff354fff"
+                android:layout_gravity="right" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Dostępny"
+                android:id="@+id/textView29" />
+
+            <Spinner
+                android:layout_width="114dp"
+                android:layout_height="39dp"
+                android:id="@+id/spinnerChangeItemStatus"
+                android:layout_weight="0.43" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Kategoria"
+                android:id="@+id/textView31" />
+
+            <Spinner
+                android:layout_width="114dp"
+                android:layout_height="39dp"
+                android:id="@+id/spinnerChangeItemCategory"
+                android:layout_weight="0.43" />
+
+        </TableRow>
+
+        <Button
+            android:layout_width="368dp"
+            android:layout_height="59dp"
+            android:text="Zapisz"
+            android:id="@+id/buttonChangeItemSave"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+</LinearLayout>
