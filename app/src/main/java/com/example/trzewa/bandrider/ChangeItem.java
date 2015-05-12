@@ -38,11 +38,11 @@ public class ChangeItem extends ActionBarActivity {
         final EditText nazwa_inst = (EditText) findViewById(R.id.editViewChangeItemName);
         final Spinner spinnerCategory = (Spinner)findViewById(R.id.spinnerChangeItemCategory);
         final Spinner spinnerStatus = (Spinner)findViewById(R.id.spinnerChangeItemStatus);
-        final String[] Status = {"dostêpny","niedostêpny"};
+        final String[] Status = new String[]{"dostÄ™pny", "niedostÄ™pny"};
         Bundle przekazaneDane = getIntent().getExtras();
         Button buttonSave = (Button) findViewById(R.id.buttonChangeItemSave);
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Instrument");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(przekazaneDane.getString("kategoria"));
         query.getInBackground(przekazaneDane.getString("objectId"), new GetCallback<ParseObject>() {
 
 
@@ -76,7 +76,7 @@ public class ChangeItem extends ActionBarActivity {
 
                     ArrayAdapter adapterStatus = new ArrayAdapter(getApplicationContext(), R.layout.spineritem, Status);
                     spinnerStatus.setAdapter(adapterStatus);
-                    if(Status[0].equals("dostêpny"))
+                    if(Status[0].equals("dostÄ™pny"))
                     {
                         spinnerStatus.setSelection(0);
                     }

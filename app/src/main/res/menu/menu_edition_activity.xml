@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single"
+        android:menuCategory="system">
+        <item android:id="@+id/instrumenty"
+            android:title="@string/instrumenty"
+            />
+        <item android:id="@+id/sprzet"
+            android:title="@string/akcesoria"
+             />
+        <item android:id="@+id/akcesoria"
+            android:title="@string/sprzet"
+            />
+    </group>
+</menu>
