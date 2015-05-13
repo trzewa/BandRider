@@ -1,5 +1,7 @@
 package com.example.trzewa.bandrider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,7 +18,7 @@ public class ChoiceActivity extends ActionBarActivity {
     Button AddInstrumentButton;
     Button edit_deleteButton;
     Button planRider;
-
+    private AlertDialog alertDialog;
     //private ParseUser mCurrentUser;
 
     @Override
@@ -24,7 +26,69 @@ public class ChoiceActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
+        boolean networkstate = Utilities.getConnectivityStatus(getApplicationContext());
+        if (networkstate) {
+            informacjaZapisu();
 
+
+            if (ParseUser.getCurrentUser() == null) {
+
+                goToLogin();
+
+            }
+
+            setContentView(R.layout.activity_choice);
+            AddInstrumentButton = (Button) findViewById(R.id.buttonAdd);
+            AddInstrumentButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    startActivity(new Intent(ChoiceActivity.this, AddActivity.class));
+                    finish();
+
+                }
+            });
+            planRider = (Button) findViewById(R.id.buttonRider);
+            planRider.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    startActivity(new Intent(ChoiceActivity.this, ShowCategoriesActivity.class));
+                    finish();
+
+                }
+            });
+
+            edit_deleteButton = (Button) findViewById(R.id.buttonEdit);
+            edit_deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    startActivity(new Intent(ChoiceActivity.this, EditionActivity.class));
+                    finish();
+
+                }
+            });
+        }
+        else
+        {
+            alertDialog = new AlertDialog.Builder(ChoiceActivity.this)
+                    .setTitle("Brak Internetu")
+                    .setMessage("Brak połączenia z siecią Internet")
+                    .setNegativeButton("Ok", new AlertDialog.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            alertDialog.cancel();
+                            finish();
+                        }
+                    })
+                    .create();
+            alertDialog.show();
+
+        }
+    }
+
+    private void informacjaZapisu() {
         Intent i = getIntent();
         if (i.hasExtra("dane"))
         {
@@ -32,50 +96,7 @@ public class ChoiceActivity extends ActionBarActivity {
             String przekazanytekst = przekazanedane.getString("dane");
             Toast.makeText(ChoiceActivity.this, przekazanytekst, Toast.LENGTH_SHORT).show();
         }
-
-
-
-        //mCurrentUser = ParseUser.getCurrentUser();
-        if (ParseUser.getCurrentUser() == null) {
-            //Intent intent = new Intent(this, LoginActivity.class);
-            //startActivity(intent);
-            goToLogin();
-
-        }
-
-        setContentView(R.layout.activity_choice);
-        AddInstrumentButton = (Button) findViewById(R.id.buttonAdd);
-        AddInstrumentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(ChoiceActivity.this, AddActivity.class));
-                finish();
-
-            }
-        });
-        planRider = (Button) findViewById(R.id.buttonRider);
-        planRider.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(ChoiceActivity.this, ShowCategoriesActivity.class));
-                finish();
-
-            }
-        });
-
-        edit_deleteButton = (Button) findViewById(R.id.buttonEdit);
-        edit_deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(ChoiceActivity.this, EditionActivity.class));
-                finish();
-
-            }
-        });
-     }
+    }
 
     private void goToLogin() {
         LoginActivity.startLogInActivity(this);
