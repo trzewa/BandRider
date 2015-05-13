@@ -24,7 +24,11 @@ public class ChoiceActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
+<<<<<<< HEAD
         //Wyswietla informacje o zapisaniu Instrumentu lub sprzetu
+=======
+        //Wyświetla informacje o zapisaniu Instrumentu lub sprzętu
+>>>>>>> 684f54e218c00fc672816c8389f67daa3317123d
         Intent i = getIntent();
         if (i.hasExtra("dane"))
         {
