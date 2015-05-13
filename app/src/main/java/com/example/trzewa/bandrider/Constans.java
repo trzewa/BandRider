@@ -18,8 +18,8 @@ public class Constans {
     public static final String INST_OWNER = "owner";
     public static final String INST_CATEGORY = "category";
     public static final String INS_SWITCH_STATUS = "Switchstatus";
-    public static final String[] ELEMENTY = {"strunowe", "dęte", "perkusyjne"};
-    public static final String[] ELEMENTY2 = {"wzmacniacz", "mikrofon", "głośnik"};
-    public static final String[] choiceList = {"Instrumenty", "Sprzęt" , "Akcesoria" };
+    public static final String[] ELEMENTY_INSTRUMENTS = {"strunowe", "dęte", "perkusyjne"};
+    public static final String[] ELEMENTY_STUFF = {"wzmacniacz", "mikrofon", "głośnik"};
+    public static final String[] ELEMENTY_ACCESSORIES = {"Instrumenty", "Sprzęt" , "Akcesoria" };
 
 }

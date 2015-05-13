@@ -8,21 +8,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.HashMap;
-import java.util.List;
 
 
 public class ChangeItem extends ActionBarActivity {
@@ -31,6 +28,7 @@ public class ChangeItem extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_item);
+        //Przypisanie przyciskow i pol z activity_change_item
         final TextView dateUpdate=(TextView) findViewById(R.id.textViewChangeItemUpdate);
         final TextView dateCreated=(TextView) findViewById(R.id.textViewChangeItemCreated);
         final TextView objectId=(TextView) findViewById(R.id.textViewChangeItemId);
@@ -39,9 +37,10 @@ public class ChangeItem extends ActionBarActivity {
         final Spinner spinnerCategory = (Spinner)findViewById(R.id.spinnerChangeItemCategory);
         final Spinner spinnerStatus = (Spinner)findViewById(R.id.spinnerChangeItemStatus);
         final String[] Status = new String[]{"dostępny", "niedostępny"};
-        Bundle przekazaneDane = getIntent().getExtras();
+        final Bundle przekazaneDane = getIntent().getExtras();
         Button buttonSave = (Button) findViewById(R.id.buttonChangeItemSave);
 
+        //zapytanie do bazy z przekazana kategoria jako parametr
         ParseQuery<ParseObject> query = ParseQuery.getQuery(przekazaneDane.getString("kategoria"));
         query.getInBackground(przekazaneDane.getString("objectId"), new GetCallback<ParseObject>() {
 
@@ -50,31 +49,60 @@ public class ChangeItem extends ActionBarActivity {
                 if (e == null) {
 
                     HashMap<String, String> map = new HashMap<>();
-                    map.put("nazwa_inst", parseObject.getString("name"));
-                    map.put("kategoria_inst", parseObject.getString("category"));
-                    map.put("wlasciciel_inst", parseObject.getString("owner"));
-                    map.put("status_inst", parseObject.getString("Switchstatus"));
+                    map.put("nazwa_inst", parseObject.getString(Constans.INST_NAME));
+                    map.put("kategoria_inst", parseObject.getString(Constans.INST_CATEGORY));
+                    map.put("wlasciciel_inst", parseObject.getString(Constans.INST_OWNER));
+                    map.put("status_inst", parseObject.getString(Constans.INS_SWITCH_STATUS));
                     map.put("objectId", parseObject.getObjectId());
                     map.put("data_modyfikacji", parseObject.getUpdatedAt().toString());
                     map.put("data_utworzenia", parseObject.getCreatedAt().toString());
 
+                    //Ustawienie pobranych danych w widoku
                     dateUpdate.setText(map.get("data_modyfikacji"));
                     dateCreated.setText(map.get("data_utworzenia"));
                     objectId.setText(map.get("objectId"));
                     owner.setText(map.get("wlasciciel_inst"));
                     nazwa_inst.setText(map.get("nazwa_inst"));
-                    ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(), R.layout.spineritem, Constans.ELEMENTY);
-                    spinnerCategory.setAdapter(adapter);
-                    for(int i=0;i < Constans.ELEMENTY.length;i++ )
+
+                    //W zależności od kategori jaką otrzymaliśmy ustawia odpowiedni spinner kategorii
+                    if((przekazaneDane.getString("kategoria")).equals("Instrument"))
                     {
-                        if(Constans.ELEMENTY[i].equals(map.get("kategoria_inst")))
-                        {
+                        for(int i=0;i < Constans.ELEMENTY_INSTRUMENTS.length;i++ )
+                     {
+                        if(Constans.ELEMENTY_INSTRUMENTS[i].equals(map.get("kategoria_inst")))
+                        { ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spineritem, Constans.ELEMENTY_INSTRUMENTS);
+                            spinnerCategory.setAdapter(adapter);
                             spinnerCategory.setSelection(i);
                             break;
                         }
+                     }
+                    } else  if(przekazaneDane.getString("kategoria").equals("Stuff"))
+                    {for(int i=0;i < Constans.ELEMENTY_STUFF.length;i++ )
+                        {
+                            if(Constans.ELEMENTY_STUFF[i].equals(map.get("kategoria_inst")))
+                            { ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spineritem, Constans.ELEMENTY_STUFF);
+                                spinnerCategory.setAdapter(adapter);
+                                spinnerCategory.setSelection(i);
+                                break;
+                            }
+                        }
+                    }
+                    else if (przekazaneDane.getString("kategoria").equals("Accessories"))
+                    {
+                        for(int i=0;i < Constans.ELEMENTY_INSTRUMENTS.length;i++ )
+                        {
+                            if(Constans.ELEMENTY_ACCESSORIES[i].equals(map.get("kategoria_inst")))
+                            { ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.spineritem, Constans.ELEMENTY_ACCESSORIES);
+                                spinnerCategory.setAdapter(adapter);
+                                spinnerCategory.setSelection(i);
+                                break;
+                            }
+                        }
+
                     }
 
-                    ArrayAdapter adapterStatus = new ArrayAdapter(getApplicationContext(), R.layout.spineritem, Status);
+                    //Sprawdza spinner dla statusu i ustawia na aktualny
+                    ArrayAdapter<String> adapterStatus = new ArrayAdapter<>(getApplicationContext(), R.layout.spineritem, Status);
                     spinnerStatus.setAdapter(adapterStatus);
                     if(Status[0].equals("dostępny"))
                     {
@@ -89,18 +117,19 @@ public class ChangeItem extends ActionBarActivity {
             }
         });
 
+        //Obsługa kliknięcia przycisku zapisu, aktualizacja danych w bazie
         buttonSave.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("Instrument");
+                ParseQuery<ParseObject> query = ParseQuery.getQuery(przekazaneDane.getString("kategoria"));
                 query.getInBackground(objectId.getText().toString(), new GetCallback<ParseObject>() {
                     public void done(ParseObject Instrument, ParseException e) {
                         if (e == null) {
                             // Now let's update it with some new data. In this case, only cheatMode and score
                             // will get sent to the Parse Cloud. playerName hasn't changed.
                             Instrument.put("name", nazwa_inst.getText().toString());
-                            Instrument.put("Switchstatus", spinnerStatus.getSelectedItem().toString());
+                            Instrument.put(Constans.INS_SWITCH_STATUS, spinnerStatus.getSelectedItem().toString());
                             Instrument.put("category", spinnerCategory.getSelectedItem().toString());
                             Instrument.saveInBackground();
                             Toast.makeText(getApplicationContext(), "Zapisano", Toast.LENGTH_SHORT).show();

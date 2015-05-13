@@ -1,6 +1,5 @@
 package com.example.trzewa.bandrider;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -25,7 +24,6 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +31,6 @@ import java.util.List;
 
 public class EditionActivity extends ListActivity  {
     private AlertDialog alertDialog;
-    private static final String TAG = "DialogDemo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,68 +38,6 @@ public class EditionActivity extends ListActivity  {
        wybranaKategoria("Instrument");
 
     }
-    private Context mContext;
-    final String[] choiceList =
-            {"Instrumenty", "Sprzęt" , "Akcesoria" };
-    private int selected = 0;
-    private int buffKey = 0; // add buffer value
-                    private void showDialogButtonClick() {
-
-                        Log.i(TAG, "show Dialog ButtonClick");
-                        AlertDialog.Builder builder =
-                                new AlertDialog.Builder(mContext);
-                        builder.setTitle("Wybierz kategorię");
-
-
-
-                        builder.setSingleChoiceItems(
-                                choiceList,
-                                selected,
-                                new DialogInterface.OnClickListener() {
-
-                                    @Override
-                                    public void onClick(
-                                            DialogInterface dialog,
-                                            int which) {
-                                        //set to buffKey instead of selected
-                                        //(when cancel not save to selected)
-                                        buffKey = which;
-                                    }
-                                })
-                                .setCancelable(false)
-                                .setPositiveButton("Ok",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog,
-                                                                int which) {
-                                                Log.d(TAG, "Which value=" + which);
-                                                Log.d(TAG, "Selected value=" + buffKey);
-
-                                                //set buff to selected
-                                                selected = buffKey;
-                                                //  Intent intent = new Intent(ShowCategoriesActivity.this, PlanRiderActivity.class);
-                                                // intent.putExtra(Constans.CATEGORY_SELECTED, selected);
-                                                //  startActivity(intent);
-                                                // listView.setVisibility(View.VISIBLE);
-
-                                            }
-                                        }
-
-                                )
-                                .setNegativeButton("Anuluj",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog,
-                                                                int which) {
-
-                                            }
-                                        }
-                                );
-
-                        AlertDialog alert = builder.create();
-                        alert.show();
-
-                    }
 
 
                    private void wybranaKategoria( final String kategoria)
@@ -121,7 +56,7 @@ public class EditionActivity extends ListActivity  {
                        try {
                            if (networkstate) {
 
-                               Toast.makeText(getApplicationContext(), "nawiazano połączenie", Toast.LENGTH_LONG).show();
+                               //Toast.makeText(getApplicationContext(), "nawiazano połączenie", Toast.LENGTH_LONG).show();
 
 
                                //Toast.makeText(getApplicationContext(), "Select ", Toast.LENGTH_SHORT).show();
@@ -137,16 +72,16 @@ public class EditionActivity extends ListActivity  {
                                                for (int i = 0; i < instrumentList.size(); i++) {
                                                    HashMap<String, String> map = new HashMap<>();
                                                    ParseObject ob = instrumentList.get(i);
-                                                   map.put("nazwa_inst", ob.getString("name"));
-                                                   map.put("kategoria_inst", ob.getString("category"));
-                                                   map.put("wlasciciel_inst", ob.getString("owner"));
-                                                   map.put("status_inst", ob.getString("Switchstatus"));
+                                                   map.put("nazwa_inst", ob.getString(Constans.INST_NAME));
+                                                   map.put("kategoria_inst", ob.getString(Constans.INST_CATEGORY));
+                                                   map.put("wlasciciel_inst", ob.getString(Constans.INST_OWNER));
+                                                   map.put("status_inst", ob.getString(Constans.INS_SWITCH_STATUS));
                                                    map.put("objectId", ob.getObjectId());
                                                    map.put("data_modyfikacji", ob.getUpdatedAt().toString());
                                                    map.put("data_utworzenia", ob.getCreatedAt().toString());
                                                    instrumentItems.add(map);
                                                }
-                                               Toast.makeText(getApplicationContext(), "Liczba pobranych instrumentów/sprzętu "  + instrumentItems.size(), Toast.LENGTH_SHORT).show();
+                                               Toast.makeText(getApplicationContext(), "Liczba pobranych instrumentów/sprzętu "  + instrumentItems.size(), Toast.LENGTH_LONG).show();
                                                //!!!!!!!!! WAŻNE!!!!!!!!///
                                                //Powoduje ponownie przeladowanie adaptera nowo pobranymi danymi///
                                                runOnUiThread(new Runnable() {
@@ -230,59 +165,6 @@ public class EditionActivity extends ListActivity  {
                                });
 
 
-
-
-
-                /*
-              case "Sprzęt":
-
-                    Toast.makeText( mContext,"Select aaaa "+Constans.choiceList[selected],Toast.LENGTH_SHORT).show();
-                    ParseQuery<ParseObject> queryStuff = ParseQuery.getQuery("Stuff");
-                    queryStuff.findInBackground(new FindCallback<ParseObject>() {
-
-                        public void done(List<ParseObject> stuffList, com.parse.ParseException e) {
-                            if (e == null) {
-                                Log.d("score", "Retrieved " + stuffList.size() );
-                                if(stuffList.size() > 0)
-                                {
-                                    for(int i=0;i<stuffList.size();i++)
-                                    {
-                                        HashMap<String, String> map = new HashMap<>();
-                                        ParseObject ob = stuffList.get(i);
-                                        map.put("nazwa_sprzet", ob.getString("name"));
-                                        map.put("kategoria_sprzet", ob.getString("category"));
-                                        map.put("wlasciciel_sprzet", ob.getString("owner"));
-                                        stuffItems.add(map);
-                                        Toast.makeText( mContext,map.get("nazwa_sprzet"),Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-
-                            } else {
-                                Log.d("score", "Error: " + e.getMessage());
-                            }
-                        }
-
-
-
-                    });
-                    setContentView(R.layout.listviewstuff);
-                    ListAdapter adapter_stuff = new SimpleAdapter(this, stuffItems,
-                            R.layout.item,
-                            new String[]{"nazwa_sprzet", "wlasciciel_sprzet"}, new int[]{
-                            R.id.nazwa, R.id.wlasciciel});
-
-                    setListAdapter(adapter_stuff);
-
-
-                    break;
-                case "Akcesoria":
-                    setContentView(R.layout.listviewaccesories);
-
-                    Toast.makeText( mContext,"Select aaaa "+Constans.choiceList[selected],Toast.LENGTH_SHORT).show();
-                    break;
-*/
-
-
                            }
 
                            else
@@ -290,7 +172,7 @@ public class EditionActivity extends ListActivity  {
                            {
                                alertDialog = new AlertDialog.Builder(EditionActivity.this)
                                        .setTitle("Brak Internetu")
-                                       .setMessage("brak połączenia z siecią Internet")
+                                       .setMessage("Brak połączenia z siecią Internet")
                                        .setNegativeButton("Ok", new AlertDialog.OnClickListener() {
                                            public void onClick(DialogInterface dialog, int which) {
 
@@ -306,6 +188,7 @@ public class EditionActivity extends ListActivity  {
                        }
                        catch(Exception e)
                        {
+                           Toast.makeText(getApplicationContext(), "Wystąpił błąd: " + e, Toast.LENGTH_SHORT).show();
 
                        }
                    }
@@ -322,12 +205,15 @@ public class EditionActivity extends ListActivity  {
         switch (item.getItemId()) {
             case R.id.instrumenty:
                 wybranaKategoria("Instrument");
+                item.setChecked(true);
                 return true;
             case R.id.sprzet:
                 wybranaKategoria("Stuff");
+                item.setChecked(true);
                 return true;
             case R.id.akcesoria:
-                wybranaKategoria("bb");
+                wybranaKategoria("Accessories");
+                item.setChecked(true);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

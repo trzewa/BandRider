@@ -4,12 +4,13 @@
         android:menuCategory="system">
         <item android:id="@+id/instrumenty"
             android:title="@string/instrumenty"
+            android:checked="true"
             />
         <item android:id="@+id/sprzet"
-            android:title="@string/akcesoria"
+            android:title="@string/sprzet"
              />
         <item android:id="@+id/akcesoria"
-            android:title="@string/sprzet"
+            android:title="@string/akcesoria"
             />
     </group>
 </menu>
